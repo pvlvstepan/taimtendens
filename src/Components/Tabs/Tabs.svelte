@@ -1,6 +1,7 @@
 <script>
   export let tabs;
   export let currentTab;
+  export let full;
 
   import { Button, Icon } from 'svelte-materialify';
 
@@ -19,6 +20,7 @@
 <div class="button_wrapper">
   {#each tabs as tab}
     <Button
+      style={full ? 'flex: 1' : ''}
       text
       active={currentTab === tab.id ? true : false}
       size="large"
@@ -35,10 +37,6 @@
 
 <style lang="scss">
   .button_wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
     flex-direction: row;
     column-gap: 10px;
