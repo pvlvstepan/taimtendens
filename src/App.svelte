@@ -25,26 +25,10 @@
       <Dashboard />
     </WindowItem>
     <WindowItem>
-      <h4>Item 2</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan,
-        diam et elementum gravida, arcu mi fermentum nibh, vel dapibus ligula
-        orci non est. Morbi commodo sagittis finibus. Maecenas in volutpat
-        massa. Nullam vulputate metus velit, quis interdum elit imperdiet ut.
-        Suspendisse et sagittis erat, euismod vulputate enim. Etiam feugiat sit
-        amet justo vitae commodo.
-      </p>
+      <h4>Page 2</h4>
     </WindowItem>
     <WindowItem>
-      <h4>Item 3</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan,
-        diam et elementum gravida, arcu mi fermentum nibh, vel dapibus ligula
-        orci non est. Morbi commodo sagittis finibus. Maecenas in volutpat
-        massa. Nullam vulputate metus velit, quis interdum elit imperdiet ut.
-        Suspendisse et sagittis erat, euismod vulputate enim. Etiam feugiat sit
-        amet justo vitae commodo.
-      </p>
+      <h4>Page 3</h4>
     </WindowItem>
   </Window>
 </MaterialApp>
