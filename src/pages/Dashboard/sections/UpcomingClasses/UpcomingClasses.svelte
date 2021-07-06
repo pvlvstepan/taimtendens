@@ -71,14 +71,12 @@
       </WindowItem>
     </Window>
   </svelte:fragment>
-  <svelte:fragment slot="card_footer">
-    <div class="button_wrapper">
-      <Button text>
-        Weekly Schedule
-        <Icon path={mdiArrowRight} class="ml-1" />
-      </Button>
-    </div>
-  </svelte:fragment>
+  <div class="button_wrapper" slot="card_footer">
+    <Button text>
+      Weekly Schedule
+      <Icon path={mdiArrowRight} class="ml-1" />
+    </Button>
+  </div>
 </Card>
 
 <style lang="scss">
