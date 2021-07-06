@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div class="card rounded-lg elevation-3">
+<div class="card rounded-lg elevation-4">
   <slot />
   {#if $$slots.card_title}
     <h6 class="card_title primary-text"><slot name="card_title" /></h6>
@@ -21,10 +21,15 @@
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    background-color: var(--theme-app-bar);
+    background-color: var(--theme-cards);
   }
   .card_title {
     font-weight: 500;
     line-height: 1;
+  }
+  .card_body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
   }
 </style>
