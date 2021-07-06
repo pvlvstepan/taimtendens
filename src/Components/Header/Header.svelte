@@ -43,8 +43,20 @@
 <AppBar style="position: relative">
   <span slot="title"><h5>TaimTendens</h5></span>
   <span style="flex: 1" />
-  <Tabs {tabs} {currentTab} on:change={changeTab} />
+  <div class="tabs_wrapper">
+    <Tabs {tabs} {currentTab} on:change={changeTab} />
+  </div>
   <Button on:click={toggleTheme} icon style="margin-right: 16px">
     <Icon path={mdiThemeLightDark} />
   </Button>
 </AppBar>
+
+<style lang="scss">
+  .tabs_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+</style>
