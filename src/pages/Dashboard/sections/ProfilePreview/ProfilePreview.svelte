@@ -4,6 +4,7 @@
   import { Button } from 'svelte-materialify';
   import AttendanceModal from '../../../../Components/AttendanceModal/AttendanceModal.svelte';
   import { tabValue } from '../../../../store/store';
+  import { mdiFormatHeader6 } from '@mdi/js';
 
   let active = false;
 
@@ -41,7 +42,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    column-gap: 15px;
+    column-gap: 20px;
   }
 
   .h5{
