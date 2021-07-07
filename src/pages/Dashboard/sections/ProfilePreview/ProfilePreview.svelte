@@ -4,7 +4,6 @@
   import { Button } from 'svelte-materialify';
   import AttendanceModal from '../../../../Components/AttendanceModal/AttendanceModal.svelte';
   import { tabValue } from '../../../../store/store';
-  import { mdiFormatHeader6 } from '@mdi/js';
 
   let active = false;
 
