@@ -2,6 +2,8 @@
   import { MaterialApp, Window, WindowItem } from 'svelte-materialify';
   import Header from './Components/Header/Header.svelte';
   import Dashboard from './pages/Dashboard/Dashboard.svelte';
+  import StudentAttendance from './pages/StudentAttendance/StudentAttendance.svelte';
+  import StudentTimetable from './pages/StudentTimetable/StudentTimetable.svelte';
   let theme = 'light';
 
   const toggleTheme = () => {
@@ -25,10 +27,10 @@
       <Dashboard />
     </WindowItem>
     <WindowItem>
-      <h4>Page 2</h4>
+      <StudentAttendance />
     </WindowItem>
     <WindowItem>
-      <h4>Page 3</h4>
+      <StudentTimetable />
     </WindowItem>
   </Window>
 </MaterialApp>
