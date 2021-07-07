@@ -9,6 +9,7 @@
     mdiCalendar,
   } from '@mdi/js';
   import Tabs from '../../../../Components/Tabs/Tabs.svelte';
+  import { tabValue } from '../../../../store/store';
 
   const tabs = [
     {
@@ -72,7 +73,7 @@
     </Window>
   </svelte:fragment>
   <div class="button_wrapper" slot="card_footer">
-    <Button text>
+    <Button text on:click={() => tabValue.set(2)}>
       Weekly Schedule
       <Icon path={mdiArrowRight} class="ml-1" />
     </Button>

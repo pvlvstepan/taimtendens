@@ -3,6 +3,7 @@
 
   import { Button } from 'svelte-materialify';
   import AttendanceModal from '../../../../Components/AttendanceModal/AttendanceModal.svelte';
+  import { tabValue } from '../../../../store/store';
 
   let active = false;
 
@@ -22,7 +23,11 @@
     <Button class="primary-color" style="flex: 1" on:click={open}
       >Sign Attendance</Button
     >
-    <Button class="primary-color" style="flex: 1">View Timetable</Button>
+    <Button
+      class="primary-color"
+      style="flex: 1"
+      on:click={() => tabValue.set(2)}>View Timetable</Button
+    >
   </div>
 </Card>
 <AttendanceModal {active} {close} />
