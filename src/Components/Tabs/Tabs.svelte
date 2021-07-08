@@ -35,7 +35,7 @@
   {/each}
 </div>
 
-<style lang="scss">
+<style>
   .button_wrapper {
     display: flex;
     flex-direction: row;
