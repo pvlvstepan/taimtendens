@@ -14,7 +14,7 @@
   {/if}
 </div>
 
-<style lang="scss">
+<style>
   .card {
     width: 100%;
     padding: 15px;

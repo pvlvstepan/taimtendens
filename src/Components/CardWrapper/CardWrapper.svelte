@@ -2,7 +2,7 @@
   <slot />
 </div>
 
-<style lang="scss">
+<style>
   .card-wrapper {
     max-width: 700px;
     margin: 20px auto;
