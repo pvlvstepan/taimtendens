@@ -11,15 +11,20 @@
   } from 'svelte-materialify';
   import Card from '../Card/Card.svelte';
 
-  export let active;
-  export let close;
+  import {signAttendanceIsOpen} from '../../store/store.js'
+
+  let active;
+
+  signAttendanceIsOpen.subscribe((value) => {
+    active = value;
+  });
 </script>
 
 <Dialog persistent bind:active>
   <div class="dialog_content">
     <Button
       class="btn_close"
-      on:click={close}
+      on:click={() => signAttendanceIsOpen.set(false)}
       icon
       style="position: absolute; top: 8px; right: 8px;"
       ><Icon path={mdiClose} /></Button
@@ -38,9 +43,9 @@
         </div>
       </div>
       <div slot="card_footer" class="button_wrapper">
-        <Button on:click={close} text>Cancel</Button>
+        <Button on:click={() => signAttendanceIsOpen.set(false)} text>Cancel</Button>
         <Button on:click={() => alert('okay')} class="primary-color"
-          >Sing Attendance</Button
+          >Sign Attendance</Button
         >
       </div>
     </Card>
