@@ -47,7 +47,7 @@
   </div>
 </Dialog>
 
-<style lang="scss">
+<style>
   .dialog_content {
     position: relative;
   }

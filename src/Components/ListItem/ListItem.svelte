@@ -23,7 +23,7 @@
   {/if}
 </div>
 
-<style lang="scss">
+<style>
   .list-item {
     display: flex;
     align-items: center;
