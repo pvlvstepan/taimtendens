@@ -10,5 +10,5 @@
   <SemesterAttendance semesterID={2} />
   <SemesterAttendance semesterID={3} />
   <SemesterAttendance semesterID={4} />
-  <SemesterAttendance semesterID={6} />
+  <SemesterAttendance semesterID={5} />
 </CardWrapper>
