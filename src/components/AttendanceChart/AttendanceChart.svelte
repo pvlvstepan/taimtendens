@@ -7,7 +7,7 @@
 
   const renderChart = () => {
     var ctx = document.getElementById(`pie-chart-${id}`);
-    var myChart = new Chart(ctx, {
+    void new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ['present', 'absent'],
