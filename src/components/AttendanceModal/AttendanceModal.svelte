@@ -15,12 +15,35 @@
   });
 
   const handleKeyPress = e => {
-    const id = e.target.id;
+    const id = parseInt(e.target.id);
+    const prev = id - 1;
+    const next = id + 1;
+
     if (e.keyCode === 8 || (e.keyCode >= 48 && e.keyCode <= 57)) {
       if (e.keyCode === 8) {
-        values[parseInt(id)] = null;
+        if (values[id] && values[id] !== null) {
+          values[id] = null;
+        } else if (id > 0 && values[id] === null) {
+          document.getElementById(prev).focus();
+        }
       } else {
-        values[parseInt(id)] = parseInt(e.key);
+        if (!values[id] || values[id] === null) {
+          values[id] = parseInt(e.key);
+          if (id < 2) {
+            document.getElementById(next).focus();
+          }
+        }
+      }
+    }
+    if (e.keyCode === 37 || e.keyCode === 39) {
+      if (e.keyCode === 37) {
+        if (id > 0) {
+          document.getElementById(prev).focus();
+        }
+      } else {
+        if (id < 2) {
+          document.getElementById(next).focus();
+        }
       }
     }
     isValid = !values.includes(null) && values.length === 3;
@@ -81,7 +104,7 @@
         </Button>
         <Button
           on:click={() => alert('okay')}
-          class={!isValid ? 'not-valid' : 'valid primary-color'}
+          class={!isValid ? '' : 'primary-color'}
           disabled={!isValid}
         >
           Sign Attendance
@@ -130,6 +153,7 @@
     border: 1px solid var(--theme-text-primary);
   }
   .input_wrapper input:active {
+    transition: none;
     outline: none;
     border: 2px solid #6200ee;
   }
