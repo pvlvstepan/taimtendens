@@ -1,5 +1,9 @@
 <script>
-  import { mdiArrowRight, mdiCheckboxMultipleMarkedCircle } from '@mdi/js';
+  import {
+    mdiArrowRight,
+    mdiCheckboxMultipleMarkedCircle,
+    mdiChartDonut,
+  } from '@mdi/js';
   import Card from '../../../../components/Card/Card.svelte';
   import { Button, Icon } from 'svelte-materialify';
   import { tabValue, signAttendanceIsOpen } from '../../../../store/store';
@@ -26,23 +30,10 @@
       <div class="col_items">
         <ListItem>
           <svelte:fragment slot="body_title">MODULE 1</svelte:fragment>
-          <div class="green-text" slot="body_alt">10/12 Classes (83%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 2</svelte:fragment>
-          <div class="green-text" slot="body_alt">9/9 Classes (100%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 3</svelte:fragment>
-          <div class="red-text" slot="body_alt">7/9 Classes (78%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 4</svelte:fragment>
-          <div class="green-text" slot="body_alt">13/14 Classes (93%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 4</svelte:fragment>
-          <div class="green-text" slot="body_alt">13/14 Classes (93%)</div>
+          <div class="el-row_items green-text" slot="body_alt">
+            <Icon path={mdiChartDonut} size="16px" />
+            9/9 Classes (100%)
+          </div>
         </ListItem>
       </div>
     </div>
@@ -56,6 +47,11 @@
 </Card>
 
 <style>
+  .el-row_items {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
   .row_items {
     display: flex;
     align-items: center;

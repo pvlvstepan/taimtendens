@@ -1,5 +1,5 @@
 <script>
-  import { mdiInformationOutline } from '@mdi/js';
+  import { mdiInformationOutline, mdiChartDonut } from '@mdi/js';
   import Card from '../../../../components/Card/Card.svelte';
   import { Button, Icon } from 'svelte-materialify';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
@@ -17,7 +17,10 @@
             >Software Development Project</svelte:fragment
           >
           <div class="space-between" slot="body_alt">
-            <span class="green-text">10/12 Classes (83%)</span>
+            <div class="el-row_items green-text">
+              <Icon path={mdiChartDonut} size="16px" />
+              9/9 Classes (100%)
+            </div>
             <span
               >Exam Eligibility: <span class="data-element red-text">***</span
               ></span
@@ -35,6 +38,11 @@
 </Card>
 
 <style>
+  .el-row_items {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
   .col_items {
     flex: 1;
     display: flex;
