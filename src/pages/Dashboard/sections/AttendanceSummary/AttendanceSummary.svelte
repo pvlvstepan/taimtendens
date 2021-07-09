@@ -1,8 +1,8 @@
 <script>
-  import { mdiArrowRight } from '@mdi/js';
+  import { mdiArrowRight, mdiCheckboxMultipleMarkedCircle } from '@mdi/js';
   import Card from '../../../../Components/Card/Card.svelte';
   import { Button, Icon, Col, Row } from 'svelte-materialify';
-  import { tabValue } from '../../../../store/store';
+  import { tabValue, signAttendanceIsOpen } from '../../../../store/store';
   import ListItem from '../../../../Components/ListItem/ListItem.svelte';
 </script>
 
@@ -13,7 +13,13 @@
     <div class="row_items">
       <div class="col_items small space">
         <div class="graph" />
-        <Button block class="primary-color">Sign Class Attendance</Button>
+        <Button 
+        block 
+        class="primary-color"
+        on:click={() => signAttendanceIsOpen.set(true)}>
+        Sign Attendance
+        <Icon path={mdiCheckboxMultipleMarkedCircle} class="ml-1"/>
+      </Button>
       </div>
       <div class="col_items">
         <ListItem>
