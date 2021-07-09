@@ -9,32 +9,31 @@
     TextField,
   } from 'svelte-materialify';
   import Card from '../Card/Card.svelte';
-  import {signAttendanceIsOpen} from '../../store/store.js'
+  import { signAttendanceIsOpen } from '../../store/store.js';
 
   let active;
-  let isValid = false
-  let values = []
+  let isValid = false;
+  let values = [];
 
-  signAttendanceIsOpen.subscribe((value) => {
+  signAttendanceIsOpen.subscribe(value => {
     active = value;
-    if (active === false)
-      values = []
-      isValid = false
+    if (active === false) values = [];
+    isValid = false;
   });
 
-  const handleKeyPress = (e) => {
-    const id = e.target.id
-    if (e.keyCode === 8 || e.keyCode >= 48 && e.keyCode <= 57) {
-      if (e.keyCode === 8 ) {
-        values[parseInt(id)] = null
+  const handleKeyPress = e => {
+    const id = e.target.id;
+    if (e.keyCode === 8 || (e.keyCode >= 48 && e.keyCode <= 57)) {
+      if (e.keyCode === 8) {
+        values[parseInt(id)] = null;
       } else {
-        values[parseInt(id)] = parseInt(e.key)
+        values[parseInt(id)] = parseInt(e.key);
       }
     }
-    isValid = !values.includes(null) && values.length === 3
-    console.log(values)
-    e.preventDefault()
-  }
+    isValid = !values.includes(null) && values.length === 3;
+    console.log(values);
+    e.preventDefault();
+  };
 </script>
 
 <Dialog persistent bind:active>
@@ -50,42 +49,50 @@
       <svelte:fragment slot="card_title">Sign Attendance</svelte:fragment>
       <div slot="card_body" class="inputs_wrapper">
         <div class="input_wrapper">
-          <input 
-          class="text-h4 text-center primary-text"
-          id='0'
-          value={values[0] ? values[0] : null}
-          maxlength='1'
-          min="1" 
-          step="1"
-          on:keydown={handleKeyPress}/>
+          <input
+            class="text-h4 text-center primary-text"
+            id="0"
+            value={values[0] ? values[0] : null}
+            maxlength="1"
+            min="1"
+            step="1"
+            on:keydown={handleKeyPress}
+          />
         </div>
         <div class="input_wrapper">
-          <input 
-          class="text-h4 text-center primary-text"
-          id='1'
-          value={values[1] ? values[1] : null}
-          maxlength='1'
-          min="1" 
-          step="1"
-          on:keydown={handleKeyPress}/>
+          <input
+            class="text-h4 text-center primary-text"
+            id="1"
+            value={values[1] ? values[1] : null}
+            maxlength="1"
+            min="1"
+            step="1"
+            on:keydown={handleKeyPress}
+          />
         </div>
         <div class="input_wrapper">
-          <input 
-          class="text-h4 text-center primary-text"
-          id='2'
-          value={values[2] ? values[2] : null}
-          maxlength='1'
-          min="1" 
-          step="1"
-          on:keydown={handleKeyPress}/>
+          <input
+            class="text-h4 text-center primary-text"
+            id="2"
+            value={values[2] ? values[2] : null}
+            maxlength="1"
+            min="1"
+            step="1"
+            on:keydown={handleKeyPress}
+          />
         </div>
       </div>
       <div slot="card_footer" class="button_wrapper">
-        <Button on:click={() => signAttendanceIsOpen.set(false)} text>Cancel</Button>
-        <Button on:click={() => alert('okay')}
+        <Button on:click={() => signAttendanceIsOpen.set(false)} text
+          >Cancel</Button
+        >
+        <Button
+          on:click={() => alert('okay')}
           class={!isValid ? 'not-valid' : 'valid primary-color'}
-          disabled={!isValid}>
-          Sign Attendance</Button>
+          disabled={!isValid}
+        >
+          Sign Attendance</Button
+        >
       </div>
     </Card>
   </div>

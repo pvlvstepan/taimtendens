@@ -13,11 +13,11 @@
   import Tabs from '../Tabs/Tabs.svelte';
 
   let currentTab;
-  tabValue.subscribe((value) => {
+  tabValue.subscribe(value => {
     currentTab = value;
   });
 
-  const changeTab = (e) => {
+  const changeTab = e => {
     tabValue.set(e.detail.id);
   };
 

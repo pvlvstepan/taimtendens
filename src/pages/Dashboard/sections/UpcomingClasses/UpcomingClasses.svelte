@@ -26,7 +26,7 @@
 
   let currentTab = 0;
 
-  const changeTab = (e) => {
+  const changeTab = e => {
     currentTab = e.detail.id;
   };
 </script>

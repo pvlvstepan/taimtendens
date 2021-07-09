@@ -13,13 +13,14 @@
     <div class="row_items">
       <div class="col_items small space">
         <div class="graph" />
-        <Button 
-        block 
-        class="primary-color"
-        on:click={() => signAttendanceIsOpen.set(true)}>
-        Sign Attendance
-        <Icon path={mdiCheckboxMultipleMarkedCircle} class="ml-1"/>
-      </Button>
+        <Button
+          block
+          class="primary-color"
+          on:click={() => signAttendanceIsOpen.set(true)}
+        >
+          Sign Attendance
+          <Icon path={mdiCheckboxMultipleMarkedCircle} class="ml-1" />
+        </Button>
       </div>
       <div class="col_items">
         <ListItem>

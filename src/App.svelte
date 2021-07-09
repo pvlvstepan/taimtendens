@@ -16,7 +16,7 @@
 
   let tabIndex;
 
-  tabValue.subscribe((value) => {
+  tabValue.subscribe(value => {
     tabIndex = value;
   });
 </script>
