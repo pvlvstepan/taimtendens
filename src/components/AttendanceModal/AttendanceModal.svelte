@@ -54,40 +54,45 @@
     >
     <Card>
       <svelte:fragment slot="card_title">Sign Attendance</svelte:fragment>
-      <div slot="card_body" class="inputs_wrapper">
-        <div class="input_wrapper">
-          <input
-            class="text-h4 text-center primary-text"
-            id="0"
-            value={values[0] ? values[0] : null}
-            maxlength="1"
-            min="1"
-            step="1"
-            on:keydown={handleKeyPress}
-          />
+      <div class="card_body" slot="card_body">
+        <div class="inputs_wrapper">
+          <div class="input_wrapper">
+            <input
+              class="text-h4 text-center primary-text"
+              id="0"
+              value={values[0] ? values[0] : null}
+              maxlength="1"
+              min="1"
+              step="1"
+              on:keydown={handleKeyPress}
+            />
+          </div>
+          <div class="input_wrapper">
+            <input
+              class="text-h4 text-center primary-text"
+              id="1"
+              value={values[1] ? values[1] : null}
+              maxlength="1"
+              min="1"
+              step="1"
+              on:keydown={handleKeyPress}
+            />
+          </div>
+          <div class="input_wrapper">
+            <input
+              class="text-h4 text-center primary-text"
+              id="2"
+              value={values[2] ? values[2] : null}
+              maxlength="1"
+              min="1"
+              step="1"
+              on:keydown={handleKeyPress}
+            />
+          </div>
         </div>
-        <div class="input_wrapper">
-          <input
-            class="text-h4 text-center primary-text"
-            id="1"
-            value={values[1] ? values[1] : null}
-            maxlength="1"
-            min="1"
-            step="1"
-            on:keydown={handleKeyPress}
-          />
-        </div>
-        <div class="input_wrapper">
-          <input
-            class="text-h4 text-center primary-text"
-            id="2"
-            value={values[2] ? values[2] : null}
-            maxlength="1"
-            min="1"
-            step="1"
-            on:keydown={handleKeyPress}
-          />
-        </div>
+        <h6 class="text-body-1">
+          Enter 3-digit code from the lecturer's screen
+        </h6>
       </div>
       <div slot="card_footer" class="button_wrapper">
         <Button on:click={() => signAttendanceIsOpen.set(false)} text>
@@ -106,6 +111,13 @@
 </Dialog>
 
 <style>
+  .card_body {
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 15px;
+  }
   .dialog_content {
     position: relative;
   }
@@ -116,7 +128,6 @@
     column-gap: 8px;
   }
   .inputs_wrapper {
-    padding: 30px 0;
     display: flex;
     flex-direction: row;
     align-items: center;
