@@ -80,7 +80,7 @@
   </div>
 </Card>
 
-<style lang="scss">
+<style>
   .button_wrapper {
     display: flex;
     align-items: center;

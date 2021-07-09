@@ -51,7 +51,7 @@
   </Button>
 </AppBar>
 
-<style lang="scss">
+<style>
   .tabs_wrapper {
     position: absolute;
     top: 0;
