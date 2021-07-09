@@ -1,13 +1,6 @@
 <script>
   import { mdiClose } from '@mdi/js';
-  import {
-    Button,
-    Col,
-    Dialog,
-    Icon,
-    Row,
-    TextField,
-  } from 'svelte-materialify';
+  import { Button, Dialog, Icon } from 'svelte-materialify';
   import Card from '../../components/Card/Card.svelte';
   import { signAttendanceIsOpen } from '../../store/store.js';
 
@@ -83,16 +76,16 @@
         </div>
       </div>
       <div slot="card_footer" class="button_wrapper">
-        <Button on:click={() => signAttendanceIsOpen.set(false)} text
-          >Cancel</Button
-        >
+        <Button on:click={() => signAttendanceIsOpen.set(false)} text>
+          Cancel
+        </Button>
         <Button
           on:click={() => alert('okay')}
           class={!isValid ? 'not-valid' : 'valid primary-color'}
           disabled={!isValid}
         >
-          Sign Attendance</Button
-        >
+          Sign Attendance
+        </Button>
       </div>
     </Card>
   </div>

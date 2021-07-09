@@ -1,7 +1,7 @@
 <script>
   import { mdiChevronRight } from '@mdi/js';
   import Card from '../../../../components/Card/Card.svelte';
-  import { Button, Icon, Col, Row } from 'svelte-materialify';
+  import { Button, Icon } from 'svelte-materialify';
   import { tabValue } from '../../../../store/store';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
   export let semesterID;
