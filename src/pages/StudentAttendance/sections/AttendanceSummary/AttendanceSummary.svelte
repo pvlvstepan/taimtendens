@@ -1,5 +1,5 @@
 <script>
-  import Card from '../../../../Components/Card/Card.svelte';
+  import Card from '../../../../components/Card/Card.svelte';
   import { mdiCheckboxMultipleMarkedCircle } from '@mdi/js';
   import { signAttendanceIsOpen } from '../../../../store/store.js';
   import { Button, Icon } from 'svelte-materialify';

@@ -8,7 +8,7 @@
     Row,
     TextField,
   } from 'svelte-materialify';
-  import Card from '../../Components/Card/Card.svelte';
+  import Card from '../../components/Card/Card.svelte';
   import { signAttendanceIsOpen } from '../../store/store.js';
 
   let active;

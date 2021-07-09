@@ -1,9 +1,9 @@
 <script>
   import { mdiArrowRight, mdiCheckboxMultipleMarkedCircle } from '@mdi/js';
-  import Card from '../../../../Components/Card/Card.svelte';
+  import Card from '../../../../components/Card/Card.svelte';
   import { Button, Icon, Col, Row } from 'svelte-materialify';
   import { tabValue, signAttendanceIsOpen } from '../../../../store/store';
-  import ListItem from '../../../../Components/ListItem/ListItem.svelte';
+  import ListItem from '../../../../components/ListItem/ListItem.svelte';
 </script>
 
 <Card>
