@@ -39,7 +39,6 @@
     }
 
     isValid = !values.includes(null) && values.length === 3;
-    console.log(values);
     e.preventDefault();
   };
 </script>
@@ -94,13 +93,13 @@
         <Button on:click={() => signAttendanceIsOpen.set(false)} text>
           Cancel
         </Button>
-        <Button
-          on:click={() => alert('okay')}
-          class={!isValid ? '' : 'primary-color'}
-          disabled={!isValid}
-        >
-          Sign Attendance
-        </Button>
+        {#if isValid}
+          <Button on:click={() => alert('okay')} class="primary-color">
+            Sign Attendance
+          </Button>
+        {:else}
+          <Button disabled>Sign Attendance</Button>
+        {/if}
       </div>
     </Card>
   </div>
