@@ -9,7 +9,7 @@
 
   const dispatch = createEventDispatcher();
 
-  const changeTab = (val) => {
+  const changeTab = val => {
     dispatch('change', {
       id: val,
     });

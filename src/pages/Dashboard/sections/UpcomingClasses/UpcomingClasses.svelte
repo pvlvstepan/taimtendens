@@ -1,6 +1,6 @@
 <script>
-  import ListItem from '../../../../Components/ListItem/ListItem.svelte';
-  import Card from '../../../../Components/Card/Card.svelte';
+  import ListItem from '../../../../components/ListItem/ListItem.svelte';
+  import Card from '../../../../components/Card/Card.svelte';
   import { Button, Icon, Window, WindowItem } from 'svelte-materialify';
   import {
     mdiArrowRight,
@@ -8,7 +8,7 @@
     mdiCalendarToday,
     mdiCalendar,
   } from '@mdi/js';
-  import Tabs from '../../../../Components/Tabs/Tabs.svelte';
+  import Tabs from '../../../../components/Tabs/Tabs.svelte';
   import { tabValue } from '../../../../store/store';
 
   const tabs = [
@@ -26,7 +26,7 @@
 
   let currentTab = 0;
 
-  const changeTab = (e) => {
+  const changeTab = e => {
     currentTab = e.detail.id;
   };
 </script>
@@ -80,7 +80,7 @@
   </div>
 </Card>
 
-<style lang="scss">
+<style>
   .button_wrapper {
     display: flex;
     align-items: center;

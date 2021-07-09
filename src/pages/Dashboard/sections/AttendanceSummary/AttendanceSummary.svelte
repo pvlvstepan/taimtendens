@@ -1,9 +1,9 @@
 <script>
   import { mdiArrowRight, mdiCheckboxMultipleMarkedCircle } from '@mdi/js';
-  import Card from '../../../../Components/Card/Card.svelte';
-  import { Button, Icon, Col, Row } from 'svelte-materialify';
+  import Card from '../../../../components/Card/Card.svelte';
+  import { Button, Icon } from 'svelte-materialify';
   import { tabValue, signAttendanceIsOpen } from '../../../../store/store';
-  import ListItem from '../../../../Components/ListItem/ListItem.svelte';
+  import ListItem from '../../../../components/ListItem/ListItem.svelte';
 </script>
 
 <Card>
@@ -13,13 +13,14 @@
     <div class="row_items">
       <div class="col_items small space">
         <div class="graph" />
-        <Button 
-        block 
-        class="primary-color"
-        on:click={() => signAttendanceIsOpen.set(true)}>
-        Sign Attendance
-        <Icon path={mdiCheckboxMultipleMarkedCircle} class="ml-1"/>
-      </Button>
+        <Button
+          block
+          class="primary-color"
+          on:click={() => signAttendanceIsOpen.set(true)}
+        >
+          Sign Attendance
+          <Icon path={mdiCheckboxMultipleMarkedCircle} class="ml-1" />
+        </Button>
       </div>
       <div class="col_items">
         <ListItem>

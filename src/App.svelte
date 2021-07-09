@@ -1,7 +1,7 @@
 <script>
   import { MaterialApp, Window, WindowItem } from 'svelte-materialify';
-  import Header from './Components/Header/Header.svelte';
-  import AttendanceModal from './Components/AttendanceModal/AttendanceModal.svelte';
+  import Header from './components/Header/Header.svelte';
+  import AttendanceModal from './components/AttendanceModal/AttendanceModal.svelte';
   import Dashboard from './pages/Dashboard/Dashboard.svelte';
   import StudentAttendance from './pages/StudentAttendance/StudentAttendance.svelte';
   import StudentTimetable from './pages/StudentTimetable/StudentTimetable.svelte';
@@ -16,7 +16,7 @@
 
   let tabIndex;
 
-  tabValue.subscribe((value) => {
+  tabValue.subscribe(value => {
     tabIndex = value;
   });
 </script>

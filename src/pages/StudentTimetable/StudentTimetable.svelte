@@ -1,5 +1,5 @@
 <script>
-  import CardWrapper from '../../Components/CardWrapper/CardWrapper.svelte';
+  import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
   import ExampleSection from './sections/ExampleSection/ExampleSection.svelte';
 </script>
 
