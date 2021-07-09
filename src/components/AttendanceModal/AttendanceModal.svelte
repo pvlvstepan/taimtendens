@@ -20,32 +20,24 @@
     const next = id + 1;
 
     if (e.keyCode === 8 || (e.keyCode >= 48 && e.keyCode <= 57)) {
-      if (e.keyCode === 8) {
-        if (values[id] && values[id] !== null) {
-          values[id] = null;
-        } else if (id > 0 && values[id] === null) {
-          document.getElementById(prev).focus();
-        }
+      if (e.keyCode === 8 && values[id] && values[id] !== null) {
+        values[id] = null;
+      } else if (e.keyCode === 8 && id > 0 && values[id] === null) {
+        document.getElementById(prev).focus();
       } else {
-        if (!values[id] || values[id] === null) {
-          values[id] = parseInt(e.key);
-          if (id < 2) {
-            document.getElementById(next).focus();
-          }
-        }
-      }
-    }
-    if (e.keyCode === 37 || e.keyCode === 39) {
-      if (e.keyCode === 37) {
-        if (id > 0) {
-          document.getElementById(prev).focus();
-        }
-      } else {
+        if (!values[id] || values[id] === null) values[id] = parseInt(e.key);
         if (id < 2) {
           document.getElementById(next).focus();
         }
       }
     }
+
+    if (e.keyCode === 37 && id > 0) {
+      document.getElementById(prev).focus();
+    } else if (e.keyCode === 39 && id < 2) {
+      document.getElementById(next).focus();
+    }
+
     isValid = !values.includes(null) && values.length === 3;
     console.log(values);
     e.preventDefault();
