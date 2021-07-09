@@ -1,8 +1,7 @@
 <script>
-  import { mdiChevronRight } from '@mdi/js';
+  import { mdiInformationOutline } from '@mdi/js';
   import Card from '../../../../components/Card/Card.svelte';
   import { Button, Icon } from 'svelte-materialify';
-  import { tabValue } from '../../../../store/store';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
   export let semesterID;
 </script>
@@ -14,47 +13,19 @@
     <div class="col_items small space">
       <div class="col_items">
         <ListItem>
-          <svelte:fragment slot="body_title">MODULE 1</svelte:fragment>
-          <div class="green-text" slot="body_alt">10/12 Classes (83%)</div>
+          <svelte:fragment slot="body_title"
+            >Software Development Project</svelte:fragment
+          >
+          <div class="space-between" slot="body_alt">
+            <span class="green-text">10/12 Classes (83%)</span>
+            <span
+              >Exam Eligibility: <span class="data-element red-text">***</span
+              ></span
+            >
+          </div>
           <svelte:fragment slot="right_element">
-            <Button text on:click={() => tabValue.set(1)}>
-              <Icon path={mdiChevronRight} class="ml-1" />
-            </Button>
-          </svelte:fragment>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 2</svelte:fragment>
-          <div class="green-text" slot="body_alt">9/9 Classes (100%)</div>
-          <svelte:fragment slot="right_element">
-            <Button text on:click={() => tabValue.set(1)}>
-              <Icon path={mdiChevronRight} class="ml-1" />
-            </Button>
-          </svelte:fragment>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 3</svelte:fragment>
-          <div class="red-text" slot="body_alt">7/9 Classes (78%)</div>
-          <svelte:fragment slot="right_element">
-            <Button text on:click={() => tabValue.set(1)}>
-              <Icon path={mdiChevronRight} class="ml-1" />
-            </Button>
-          </svelte:fragment>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 4</svelte:fragment>
-          <div class="green-text" slot="body_alt">13/14 Classes (93%)</div>
-          <svelte:fragment slot="right_element">
-            <Button text on:click={() => tabValue.set(1)}>
-              <Icon path={mdiChevronRight} class="ml-1" />
-            </Button>
-          </svelte:fragment>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 4</svelte:fragment>
-          <div class="green-text" slot="body_alt">13/14 Classes (93%)</div>
-          <svelte:fragment slot="right_element">
-            <Button text on:click={() => tabValue.set(1)}>
-              <Icon path={mdiChevronRight} class="ml-1" />
+            <Button icon on:click={() => alert('Attendance Details')}>
+              <Icon path={mdiInformationOutline} />
             </Button>
           </svelte:fragment>
         </ListItem>
@@ -72,6 +43,12 @@
   }
   .col_items.small {
     flex: none;
+  }
+  .space-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   .col_items.space {
     justify-content: space-between;
