@@ -4,6 +4,7 @@
   import { Button, Icon } from 'svelte-materialify';
   import { tabValue, signAttendanceIsOpen } from '../../../../store/store';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
+  import AttendanceChart from '../../../../components/AttendanceChart/AttendanceChart.svelte';
 </script>
 
 <Card>
@@ -11,8 +12,8 @@
 
   <svelte:fragment slot="card_body">
     <div class="row_items">
-      <div class="col_items small space">
-        <div class="graph" />
+      <div class="col_items space">
+        <AttendanceChart attendance={85.25} id={2} />
         <Button
           block
           class="primary-color"
@@ -65,9 +66,6 @@
     display: flex;
     flex-direction: column;
     row-gap: 8px;
-  }
-  .col_items.small {
-    flex: none;
   }
   .col_items.space {
     justify-content: space-between;
