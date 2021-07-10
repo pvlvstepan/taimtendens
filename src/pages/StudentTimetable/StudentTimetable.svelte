@@ -1,8 +1,8 @@
 <script>
   import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
-  import ExampleSection from './sections/ExampleSection/ExampleSection.svelte';
+  import TimetableView from './sections/TimetableView/TimetableView.svelte'
 </script>
 
 <CardWrapper>
-  <ExampleSection />
+  <TimetableView />
 </CardWrapper>

@@ -13,7 +13,6 @@
     dispatch('change', {
       id: val,
     });
-    console.log(val);
   };
 </script>
 
@@ -28,7 +27,7 @@
       on:click={() => changeTab(tab.id)}
     >
       <div class="button_elements">
-        <Icon path={tab.icon} />
+        {#if tab.icon}<Icon path={tab.icon} />{/if}
         <span>{tab.label}</span>
       </div>
     </Button>
