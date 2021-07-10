@@ -1,9 +1,14 @@
 <script>
-  import { mdiArrowRight } from '@mdi/js';
-  import Card from '../../../../Components/Card/Card.svelte';
-  import { Button, Icon, Col, Row } from 'svelte-materialify';
-  import { tabValue } from '../../../../store/store';
-  import ListItem from '../../../../Components/ListItem/ListItem.svelte';
+  import {
+    mdiArrowRight,
+    mdiCheckboxMultipleMarkedCircle,
+    mdiChartDonut,
+  } from '@mdi/js';
+  import Card from '../../../../components/Card/Card.svelte';
+  import { Button, Icon } from 'svelte-materialify';
+  import { tabValue, signAttendanceIsOpen } from '../../../../store/store';
+  import ListItem from '../../../../components/ListItem/ListItem.svelte';
+  import AttendanceChart from '../../../../components/AttendanceChart/AttendanceChart.svelte';
 </script>
 
 <Card>
@@ -11,30 +16,24 @@
 
   <svelte:fragment slot="card_body">
     <div class="row_items">
-      <div class="col_items small space">
-        <div class="graph" />
-        <Button block class="primary-color">Sign Class Attendance</Button>
+      <div class="col_items space">
+        <AttendanceChart attendance={85.25} id={2} />
+        <Button
+          block
+          class="primary-color"
+          on:click={() => signAttendanceIsOpen.set(true)}
+        >
+          Sign Attendance
+          <Icon path={mdiCheckboxMultipleMarkedCircle} class="ml-1" />
+        </Button>
       </div>
       <div class="col_items">
         <ListItem>
           <svelte:fragment slot="body_title">MODULE 1</svelte:fragment>
-          <div class="green-text" slot="body_alt">10/12 Classes (83%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 2</svelte:fragment>
-          <div class="green-text" slot="body_alt">9/9 Classes (100%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 3</svelte:fragment>
-          <div class="red-text" slot="body_alt">7/9 Classes (78%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 4</svelte:fragment>
-          <div class="green-text" slot="body_alt">13/14 Classes (93%)</div>
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="body_title">MODULE 4</svelte:fragment>
-          <div class="green-text" slot="body_alt">13/14 Classes (93%)</div>
+          <div class="el-row_items green-text" slot="body_alt">
+            <Icon path={mdiChartDonut} size="16px" />
+            9/9 Classes (100%)
+          </div>
         </ListItem>
       </div>
     </div>
@@ -48,6 +47,11 @@
 </Card>
 
 <style>
+  .el-row_items {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
   .row_items {
     display: flex;
     align-items: center;
@@ -58,9 +62,6 @@
     display: flex;
     flex-direction: column;
     row-gap: 8px;
-  }
-  .col_items.small {
-    flex: none;
   }
   .col_items.space {
     justify-content: space-between;
