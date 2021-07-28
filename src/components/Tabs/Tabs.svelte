@@ -19,9 +19,11 @@
 <div class="button_wrapper">
   {#each tabs as tab}
     <Button
-      style={full ? 'flex: 1' : ''}
       text
       active={currentTab === tab.id ? true : false}
+      style={`pointer-events: ${currentTab === tab.id ? 'none;' : 'all;'} ${
+        full ? 'flex: 1' : ''
+      }`}
       size="large"
       class={currentTab === tab.id ? 'primary-text' : ''}
       on:click={() => changeTab(tab.id)}

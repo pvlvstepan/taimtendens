@@ -6,6 +6,13 @@ a {
 .s-dialog__content {
   border-radius: 14px;
 }
+.s-dialog__content {
+  overflow-y: visible;
+}
+.s-menu {
+  margin-bottom: 30px;
+  max-height: 200px;
+}
 .s-btn {
   border-radius: 8px;
 }

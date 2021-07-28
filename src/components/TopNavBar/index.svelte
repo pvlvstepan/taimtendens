@@ -4,7 +4,10 @@
 
   import { AppBar, Button, Icon } from 'svelte-materialify/src';
   import { goto, stores } from '@sapper/app';
+  import { onMount } from 'svelte';
   const { session } = stores();
+
+  let isMounded = false;
 
   const adminPages = [
     {
@@ -43,24 +46,31 @@
   ];
 
   const loadUser = async () => {
-    const resultUsers = await fetch('dashboard/user.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({ token: $session.token }),
-    });
+    if (isMounded) {
+      const resultUsers = await fetch('dashboard/user.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({ token: $session.token }),
+      });
 
-    const user = await resultUsers.json();
+      const user = await resultUsers.json();
 
-    if (user[0].role_id === 2) {
-      pages.push(...adminPages);
-      pages = [...pages];
+      if (user[0].role_id === 2) {
+        pages.push(...adminPages);
+        pages = [...pages];
+      }
     }
   };
 
-  $: $session.token, loadUser();
+  onMount(() => {
+    loadUser();
+    isMounded = true;
+  });
+
+  $: $session.token, isMounded, loadUser();
 </script>
 
 <AppBar style="position: relative">

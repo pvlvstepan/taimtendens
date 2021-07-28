@@ -4,14 +4,13 @@
   import Card from '../../../../components/Card/Card.svelte';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
   import Tabs from '../../../../components/Tabs/Tabs.svelte';
-  import AddUser from '../AddUser/index.svelte';
 
   export let users;
 
   let sortedUsers = users;
   let SearchTerm = '';
 
-  let userAddIsOpen = false;
+  export let userAddIsOpen;
 
   const filterUsers = term => {
     SearchTerm = term;
@@ -112,7 +111,7 @@
               >
                 {#if user.profile_pic && user.profile_pic !== ''}
                   <img
-                    src={'data:image/png;base64,' + user.profile_pic}
+                    src={user.profile_pic}
                     alt="Avatar"
                     style="object-fit: cover; width: 56px; height: 56px"
                   />
@@ -149,8 +148,6 @@
     </div>
   </svelte:fragment>
 </Card>
-
-<AddUser bind:active={userAddIsOpen} />
 
 <style>
   .row_items {

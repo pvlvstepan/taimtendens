@@ -27,12 +27,34 @@
 
     const users = await allUsers.json();
 
+    const allIntakes = await this.fetch('users/intake.json', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    });
+
+    const intakes = await allIntakes.json();
+
+    const allModules = await this.fetch('users/module.json', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    });
+
+    const modules = await allModules.json();
+
     if (user && user[0].role_id !== 2) {
       return this.redirect(302, 'login');
     }
 
     return {
       users: users,
+      modules: modules,
+      intakes: intakes,
     };
   }
 </script>
@@ -40,8 +62,11 @@
 <script>
   import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
   import UserView from './sections/UserView/index.svelte';
+  import AddUser from './sections/AddUser/index.svelte';
 
-  export let users;
+  export let users, modules, intakes;
+
+  let userAddIsOpen = false;
 </script>
 
 <svelte:head>
@@ -49,5 +74,8 @@
 </svelte:head>
 
 <CardWrapper>
-  <UserView {users} />
+  <UserView {users} bind:userAddIsOpen />
+  {#if userAddIsOpen}
+    <AddUser bind:active={userAddIsOpen} {modules} {intakes} />
+  {/if}
 </CardWrapper>

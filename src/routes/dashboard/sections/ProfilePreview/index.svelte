@@ -19,7 +19,7 @@
       >
         {#if user.profile_pic && user.profile_pic !== ''}
           <img
-            src={'data:image/png;base64,' + user.profile_pic}
+            src={user.profile_pic}
             alt="Avatar"
             style="object-fit: cover; width: 115px; height: 115px"
           />
