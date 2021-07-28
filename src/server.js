@@ -15,25 +15,23 @@ express()
     json(),
     session({
       secret: 'SomeSecretStringThatIsNotInGithub',
-      resave: true,
+      resave: false,
       saveUninitialized: true,
       cookie: {
         maxAge: 31536000
       },
       store: new FileStore({
-        path: `.sessions`
+        path: `.sessions`,
+        retries: 0
       })
     }),
     compression({ threshold: 0 }),
     sirv('static', { dev }),
     sapper.middleware({
-      session: (req, res) => {
-        return ({
-          token: req.session.token,
-          isLoggedIn: req.session.isLoggedIn,
-          signAttendanceIsOpen: false
-        });
-      }
+      session: (req, res) => ({
+        isLoggedIn: req.session.isLoggedIn,
+        token: req.session.token
+      })
     })
   )
   .listen(PORT, err => {

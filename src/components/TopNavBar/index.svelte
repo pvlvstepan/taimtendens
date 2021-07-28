@@ -1,10 +1,66 @@
 <script>
   export let toggleTheme;
   export let segment;
-  export let pages;
 
   import { AppBar, Button, Icon } from 'svelte-materialify/src';
-  import { goto } from '@sapper/app';
+  import { goto, stores } from '@sapper/app';
+  const { session } = stores();
+
+  const adminPages = [
+    {
+      title: 'Users',
+      href: 'users',
+      icon: 'mdi-account',
+    },
+    {
+      title: 'Intakes',
+      href: 'intakes',
+      icon: 'mdi-school',
+    },
+    {
+      title: 'Modules',
+      href: 'modules',
+      icon: 'mdi-book-open-variant',
+    },
+  ];
+
+  let pages = [
+    {
+      title: 'Dashboard',
+      href: 'dashboard',
+      icon: 'mdi-view-dashboard',
+    },
+    {
+      title: 'Attendance',
+      href: 'attendance',
+      icon: 'mdi-clock-check',
+    },
+    {
+      title: 'Timetable',
+      href: 'timetable',
+      icon: 'mdi-timetable',
+    },
+  ];
+
+  const loadUser = async () => {
+    const resultUsers = await fetch('dashboard/user.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ token: $session.token }),
+    });
+
+    const user = await resultUsers.json();
+
+    if (user[0].role_id === 2) {
+      pages.push(...adminPages);
+      pages = [...pages];
+    }
+  };
+
+  $: $session.token, loadUser();
 </script>
 
 <AppBar style="position: relative">
