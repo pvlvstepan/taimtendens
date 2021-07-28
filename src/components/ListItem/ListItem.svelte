@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <div class="list-item">
   {#if $$slots.left_element}
     <div class="item-left-el">

@@ -1,8 +1,7 @@
 <script>
-  import { mdiClose } from '@mdi/js';
-  import { Button, Dialog, Icon } from 'svelte-materialify';
+  import { Button, Dialog, Icon } from 'svelte-materialify/src';
   import Card from '../../components/Card/Card.svelte';
-  import { signAttendanceIsOpen } from '../../store/store.js';
+  import { signAttendanceIsOpen } from '../../stores.js';
 
   let active;
   let isValid = false;
@@ -50,7 +49,7 @@
       on:click={() => signAttendanceIsOpen.set(false)}
       icon
       style="position: absolute; top: 8px; right: 8px;"
-      ><Icon path={mdiClose} /></Button
+      ><Icon class="mdi mdi-close" /></Button
     >
     <Card>
       <svelte:fragment slot="card_title">Sign Attendance</svelte:fragment>

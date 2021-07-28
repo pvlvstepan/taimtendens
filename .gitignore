@@ -1,5 +1,8 @@
-/node_modules/
-/public/build/
-
 .DS_Store
+/node_modules/
+/src/node_modules/@sapper/
+/src/node_modules/@lib/
+yarn-error.log
+/__sapper__/
+/.sessions/
 package-lock.json

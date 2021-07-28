@@ -3,7 +3,7 @@
   export let currentTab;
   export let full;
 
-  import { Button, Icon } from 'svelte-materialify';
+  import { Button, Icon } from 'svelte-materialify/src';
 
   import { createEventDispatcher } from 'svelte';
 
@@ -27,7 +27,7 @@
       on:click={() => changeTab(tab.id)}
     >
       <div class="button_elements">
-        {#if tab.icon}<Icon path={tab.icon} />{/if}
+        {#if tab.icon}<Icon class={`mdi ${tab.icon}`} />{/if}
         <span>{tab.label}</span>
       </div>
     </Button>

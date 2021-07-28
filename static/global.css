@@ -1,0 +1,34 @@
+a {
+  text-decoration: none;
+}
+.s-card:not(.flat),
+.card,
+.s-dialog__content {
+  border-radius: 14px;
+}
+.s-btn {
+  border-radius: 8px;
+}
+.s-text-field__wrapper.outlined,
+.s-text-field__wrapper.solo {
+  border-radius: 8px;
+}
+.s-expansion-panel__content {
+  padding: 16px 24px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  transition: 0.25s ease-in-out;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+::-webkit-scrollbar-track {
+  background: inherit;
+  border-radius: 0;
+}

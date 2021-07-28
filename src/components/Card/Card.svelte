@@ -1,7 +1,4 @@
-<script>
-</script>
-
-<div class="card rounded-lg elevation-4">
+<div class="card elevation-4">
   <slot />
   {#if $$slots.card_title}
     <h6 class="card_title primary-text"><slot name="card_title" /></h6>
