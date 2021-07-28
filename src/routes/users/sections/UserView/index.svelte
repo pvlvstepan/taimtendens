@@ -7,8 +7,6 @@
 
   export let users;
 
-  console.log(users);
-
   let sortedUsers = users;
   let SearchTerm = '';
 
@@ -168,10 +166,5 @@
     display: flex;
     flex-direction: column;
     row-gap: 8px;
-  }
-  .button_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
   }
 </style>
