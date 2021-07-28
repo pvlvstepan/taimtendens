@@ -4,11 +4,14 @@
   import Card from '../../../../components/Card/Card.svelte';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
   import Tabs from '../../../../components/Tabs/Tabs.svelte';
+  import AddUser from '../AddUser/index.svelte';
 
   export let users;
 
   let sortedUsers = users;
   let SearchTerm = '';
+
+  let userAddIsOpen = false;
 
   const filterUsers = term => {
     SearchTerm = term;
@@ -80,7 +83,9 @@
   <svelte:fragment slot="card_title">
     <div class="row_items justify-space-between">
       Users
-      <Button class="primary-color">Add user</Button>
+      <Button class="primary-color" on:click={() => (userAddIsOpen = true)}
+        >Add user</Button
+      >
     </div>
   </svelte:fragment>
   <svelte:fragment slot="card_body">
@@ -144,6 +149,8 @@
     </div>
   </svelte:fragment>
 </Card>
+
+<AddUser bind:active={userAddIsOpen} />
 
 <style>
   .row_items {
