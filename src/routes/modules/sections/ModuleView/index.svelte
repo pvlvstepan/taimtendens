@@ -73,12 +73,14 @@
                 <span class="red-text">Lecturer is not assigned!</span>
               {/if}
             </div>
-            <div class="row_items" slot="body_alt">
+            <div class="row_items align-start" slot="body_alt">
               <Icon class="mdi mdi-school" size="16px" />
               <div class="col_items">
                 {#each intake_modules as im}
                   {#if im.module_id === item.module_id}
-                    {im.intake_id} {im.active === 0 ? '(Inactive)' : ''}
+                    <span style={`opacity: ${im.active === 1 ? '1' : '0.5'}`}
+                      >{im.intake_id}</span
+                    >
                   {/if}
                 {/each}
               </div>
@@ -108,6 +110,9 @@
 </Card>
 
 <style>
+  .row_items.align-start {
+    align-items: flex-start;
+  }
   .row_items {
     display: flex;
     flex-direction: row;
