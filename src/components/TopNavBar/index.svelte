@@ -1,5 +1,4 @@
 <script>
-  export let toggleTheme;
   export let segment;
 
   import { AppBar, Button, Icon } from 'svelte-materialify/src';
@@ -74,12 +73,6 @@
 </script>
 
 <AppBar style="position: relative">
-  <span slot="title"
-    ><h5 class="d-flex align-items-center">
-      <Icon class="mdi mdi-clock-fast" /> TaimTendens
-    </h5></span
-  >
-  <span style="flex: 1" />
   <div class="tabs_wrapper">
     <div class="button_wrapper">
       {#each pages as page}
@@ -98,9 +91,6 @@
       {/each}
     </div>
   </div>
-  <Button on:click={toggleTheme} icon style="margin-right: 16px">
-    <Icon class="mdi mdi-theme-light-dark" />
-  </Button>
 </AppBar>
 
 <style>

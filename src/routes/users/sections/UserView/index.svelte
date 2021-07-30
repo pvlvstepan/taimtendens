@@ -5,12 +5,10 @@
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
   import Tabs from '../../../../components/Tabs/Tabs.svelte';
 
-  export let users;
+  export let users, editingUser, userAddIsOpen, userEditIsOpen;
 
   let sortedUsers = users;
   let SearchTerm = '';
-
-  export let userAddIsOpen;
 
   const filterUsers = term => {
     SearchTerm = term;
@@ -134,7 +132,15 @@
               {/if}
             </div>
             <svelte:fragment slot="right_element">
-              <Button text icon class="edit_button">
+              <Button
+                text
+                icon
+                class="edit_button"
+                on:click={() => {
+                  editingUser = user;
+                  userEditIsOpen = true;
+                }}
+              >
                 <Icon class="mdi mdi-account-edit" />
               </Button>
             </svelte:fragment>

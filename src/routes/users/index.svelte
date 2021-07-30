@@ -63,19 +63,31 @@
   import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
   import UserView from './sections/UserView/index.svelte';
   import AddUser from './sections/AddUser/index.svelte';
+  import UserEdit from './sections/UserEdit/index.svelte';
 
   export let users, modules, intakes;
 
   let userAddIsOpen = false;
+  let userEditIsOpen = false;
+
+  let editingUser;
 </script>
 
 <svelte:head>
-  <title>Dashboard</title>
+  <title>TaimTendens | Users</title>
 </svelte:head>
 
 <CardWrapper>
-  <UserView {users} bind:userAddIsOpen />
+  <UserView {users} bind:userAddIsOpen bind:userEditIsOpen bind:editingUser />
   {#if userAddIsOpen}
     <AddUser bind:active={userAddIsOpen} {modules} {intakes} />
+  {/if}
+  {#if userEditIsOpen}
+    <UserEdit
+      bind:active={userEditIsOpen}
+      {modules}
+      {intakes}
+      user={editingUser}
+    />
   {/if}
 </CardWrapper>

@@ -105,7 +105,7 @@
 </script>
 
 <svelte:head>
-  <title>Sign In</title>
+  <title>TaimTendens | Sign In</title>
 </svelte:head>
 
 <div class="d-flex justify-center align-center p-4" style="height:100vh;">

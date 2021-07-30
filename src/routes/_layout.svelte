@@ -5,18 +5,12 @@
   import AttendanceModal from '../components/AttendanceModal/AttendanceModal.svelte';
 
   export let segment;
-
-  let theme = 'light';
-  const toggleTheme = () => {
-    if (theme === 'light') theme = 'dark';
-    else theme = 'light';
-  };
 </script>
 
-<MaterialApp {theme}>
+<MaterialApp>
   <main class="page">
     {#if segment !== 'login' && segment !== 'logout'}
-      <TopNavBar {segment} {toggleTheme} />
+      <TopNavBar {segment} />
     {/if}
     <slot />
   </main>

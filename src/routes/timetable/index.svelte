@@ -68,5 +68,5 @@
 {/if}
 
 <svelte:head>
-  <title>Timetable</title>
+  <title>TaimTendens | Timetable</title>
 </svelte:head>

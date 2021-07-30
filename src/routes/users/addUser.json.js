@@ -40,6 +40,4 @@ export function post(req, res) {
       });
     }
   });
-
-
 }

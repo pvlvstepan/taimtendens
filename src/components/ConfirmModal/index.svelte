@@ -7,7 +7,12 @@
   export let action;
 </script>
 
-<Dialog persistent bind:active>
+<Dialog
+  persistent
+  bind:active
+  overlay={{ style: 'z-index: 5' }}
+  class="confirm-dialog"
+>
   <div class="dialog_content">
     <Button
       class="btn_close"

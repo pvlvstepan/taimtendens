@@ -74,5 +74,5 @@
 </CardWrapper>
 
 <svelte:head>
-  <title>Attendance</title>
+  <title>TaimTendens | Attendance</title>
 </svelte:head>

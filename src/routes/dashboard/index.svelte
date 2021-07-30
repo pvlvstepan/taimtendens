@@ -99,7 +99,7 @@
 </script>
 
 <svelte:head>
-  <title>Dashboard</title>
+  <title>TaimTendens | Dashboard</title>
 </svelte:head>
 
 <CardWrapper>

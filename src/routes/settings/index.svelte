@@ -73,6 +73,8 @@
   export let lecturer_intakes = [];
 </script>
 
+<svelte:head>TaimTendens | Settings</svelte:head>
+
 <CardWrapper>
   <Button text on:click={() => goto('dashboard')} style="margin-right: auto">
     <Icon class="mdi mdi-arrow-left mr-1" />
