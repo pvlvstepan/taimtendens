@@ -75,6 +75,31 @@
       <Icon class="mdi mdi-timetable ml-1" />
     </Button>
   </div>
+  {#if user.role_id === 2}
+    <div class="button_wrapper">
+      <Button
+        class="primary-color"
+        style="flex: 1"
+        on:click={() => goto('users')}
+      >
+        Users
+      </Button>
+      <Button
+        class="primary-color"
+        style="flex: 1"
+        on:click={() => goto('intakes')}
+      >
+        Intakes
+      </Button>
+      <Button
+        class="primary-color"
+        style="flex: 1"
+        on:click={() => goto('modules')}
+      >
+        Modules
+      </Button>
+    </div>
+  {/if}
 </Card>
 
 <ConfrimModal

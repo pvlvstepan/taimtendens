@@ -45,7 +45,8 @@
           : 'Admin'}
       </h6>
       <h6 class="text-subtitle-1 text-center text--secondary">
-        TP{user.user_tp} | {user.intake_id || user.module_id}
+        TP{user.user_tp}
+        {user.role_id !== 2 ? `| ${user.intake_id || user.module_id}` : ''}
       </h6>
       <h6 class="text-subtitle-1 text-center text--secondary">
         {user.email}
@@ -89,7 +90,7 @@
             {/if}
           </ExpansionPanel>
         </ExpansionPanels>
-      {:else}
+      {:else if user.role_id === 1}
         <ExpansionPanels style="border-radius:8px">
           <ExpansionPanel>
             <span slot="header" class="text-subtitle-1 text--secondary"

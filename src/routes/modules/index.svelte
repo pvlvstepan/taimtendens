@@ -34,9 +34,16 @@
 <script>
   import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
   import ModuleView from './sections/ModuleView/index.svelte';
+  import ModuleAdd from './sections/ModuleAdd/index.svelte';
+  import ModuleEdit from './sections/ModuleEdit/index.svelte';
 
   export let modules = [];
   export let intake_modules = [];
+
+  let moduleAddisOpen = false,
+    moduleEditIsOpen = false;
+
+  let editingModule;
 </script>
 
 <svelte:head>
@@ -44,5 +51,17 @@
 </svelte:head>
 
 <CardWrapper>
-  <ModuleView {modules} {intake_modules} />
+  <ModuleView
+    {modules}
+    {intake_modules}
+    bind:moduleAddisOpen
+    bind:moduleEditIsOpen
+    bind:editingModule
+  />
+  {#if moduleAddisOpen}
+    <ModuleAdd bind:active={moduleAddisOpen} />
+  {/if}
+  {#if moduleEditIsOpen}
+    <ModuleEdit bind:active={moduleEditIsOpen} item={editingModule} />
+  {/if}
 </CardWrapper>

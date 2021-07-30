@@ -4,8 +4,11 @@
   import Card from '../../../../components/Card/Card.svelte';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
 
-  export let modules;
-  export let intake_modules;
+  export let modules,
+    intake_modules,
+    moduleAddisOpen,
+    moduleEditIsOpen,
+    editingModule;
 
   let sortedModules = modules;
 
@@ -31,7 +34,12 @@
   <svelte:fragment slot="card_title">
     <div class="row_items justify-space-between">
       Modules
-      <Button class="primary-color">Add module</Button>
+      <Button
+        class="primary-color"
+        on:click={() => {
+          moduleAddisOpen = true;
+        }}>Add module</Button
+      >
     </div>
   </svelte:fragment>
   <svelte:fragment slot="card_body">
@@ -75,6 +83,19 @@
                 {/each}
               </div>
             </div>
+            <svelte:fragment slot="right_element">
+              <Button
+                text
+                icon
+                class="edit_button"
+                on:click={() => {
+                  editingModule = item;
+                  moduleEditIsOpen = true;
+                }}
+              >
+                <Icon class="mdi mdi-book-edit" />
+              </Button>
+            </svelte:fragment>
           </ListItem>
         {/each}
       {:else}
