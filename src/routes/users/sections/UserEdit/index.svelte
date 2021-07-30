@@ -137,6 +137,11 @@
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
+      error = true;
+      snackbar = true;
+      setTimeout(() => {
+        error = false;
+      }, 2000);
     };
   };
 
