@@ -46,6 +46,7 @@
   import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
   import IntakeView from './sections/IntakeView/index.svelte';
   import IntakeAdd from './sections/IntakeAdd/index.svelte';
+  import IntakeEdit from './sections/IntakeEdit/index.svelte';
 
   export let intakes = [];
   export let intake_modules = [];
@@ -68,5 +69,13 @@
   />
   {#if intakeAddisOpen}
     <IntakeAdd bind:active={intakeAddisOpen} {modules} />
+  {/if}
+  {#if intakeEditIsOpen}
+    <IntakeEdit
+      bind:active={intakeEditIsOpen}
+      intake={editingIntake}
+      {modules}
+      {intake_modules}
+    />
   {/if}
 </CardWrapper>

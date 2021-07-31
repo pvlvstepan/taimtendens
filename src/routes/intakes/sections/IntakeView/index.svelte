@@ -1,5 +1,11 @@
 <script>
-  import { Button, Icon, TextField } from 'svelte-materialify/src';
+  import {
+    Button,
+    Checkbox,
+    Icon,
+    Snackbar,
+    TextField,
+  } from 'svelte-materialify/src';
 
   import Card from '../../../../components/Card/Card.svelte';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
@@ -24,6 +30,34 @@
           .includes(SearchTerm.toLowerCase())
       );
     });
+  };
+
+  let snackbar = false;
+  let error = false;
+
+  const changeActive = async (value, module_id, intake_id) => {
+    const result = await fetch('intakes/editActive.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        intake_id: intake_id,
+        module_id: module_id,
+        active: value ? 1 : 0,
+      }),
+    });
+
+    const response = await result.json();
+
+    if (response.error !== undefined) {
+      error = true;
+      snackbar = true;
+      setTimeout(() => location.replace('/intakes'), 2000);
+    } else {
+      snackbar = true;
+    }
   };
 </script>
 
@@ -66,17 +100,25 @@
                 >{item.total_students} students total</span
               >
             </div>
-            <div class="row_items align-start" slot="body_alt">
-              <Icon class="mdi mdi-school" size="16px" />
-              <div class="col_items">
-                {#each intake_modules as im}
-                  {#if im.intake_id === item.intake_id}
-                    <span style={`opacity: ${im.active === 1 ? '1' : '0.5'}`}
-                      >{im.module_name} ({im.module_id})</span
-                    >
-                  {/if}
-                {/each}
-              </div>
+            <div class="col-items" slot="body_alt">
+              {#each intake_modules as im}
+                {#if im.intake_id === item.intake_id}
+                  <div class="row_items">
+                    <Checkbox
+                      checked={im.active === 1}
+                      on:change={e =>
+                        changeActive(
+                          e.target.checked,
+                          im.module_id,
+                          im.intake_id
+                        )}
+                    />
+                    <div class="col_items">
+                      <span>{im.module_name} ({im.module_id})</span>
+                    </div>
+                  </div>
+                {/if}
+              {/each}
             </div>
             <svelte:fragment slot="right_element">
               <Button
@@ -102,15 +144,22 @@
   </svelte:fragment>
 </Card>
 
+<Snackbar
+  class="flex-column"
+  bind:active={snackbar}
+  bottom
+  center
+  timeout={2000}
+>
+  {error === false ? 'Changes Saved Successfuly' : 'Something went wrong...'}
+</Snackbar>
+
 <style>
   .row_items {
     display: flex;
     flex-direction: row;
     column-gap: 8px;
     align-items: center;
-  }
-  .row_items.align-start {
-    align-items: flex-start;
   }
   .no-classes {
     height: 150px;
