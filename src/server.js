@@ -2,11 +2,11 @@ import sirv from 'sirv';
 import express from 'express';
 import compression from 'compression';
 import * as sapper from '@sapper/server';
-import {json} from 'body-parser';
+import { json } from 'body-parser';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 
-const {PORT, NODE_ENV} = process.env;
+const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 const FileStore = new sessionFileStore(session);
 
@@ -25,8 +25,8 @@ express()
         retries: 0
       })
     }),
-    compression({threshold: 0}),
-    sirv('static', {dev}),
+    compression({ threshold: 0 }),
+    sirv('static', { dev }),
     sapper.middleware({
       session: (req, res) => ({
         isLoggedIn: req.session.isLoggedIn,
