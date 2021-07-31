@@ -1,7 +1,7 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function post(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
   db.query(
     `SELECT m.module_id as value, concat(m.module_name, ' (', m.module_id, ')') as name FROM module m INNER JOIN intake_module im ON im.module_id = m.module_id WHERE im.active = 1 AND im.intake_id = '${req.body.intake_id}' ORDER BY m.module_id ASC`,
     (err, results) => {
@@ -12,4 +12,5 @@ export function post(req, res) {
       res.end(JSON.stringify(results));
     }
   );
+  db.end();
 }

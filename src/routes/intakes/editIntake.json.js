@@ -1,20 +1,20 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function post(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
   db.query(
     `UPDATE intake SET intake_name = '${req.body.intake_name}' WHERE intake_id = '${req.body.intake_id}'`,
     err => {
       if (err) {
         console.log('[mysql]:', err.message);
-        res.end(JSON.stringify({error: 'Something went wrong...'}));
+        res.end(JSON.stringify({ error: 'Something went wrong...' }));
       } else {
         db.query(
           `DELETE FROM intake_module WHERE intake_id = '${req.body.intake_id}'`,
           err => {
             if (err) {
               console.log('[mysql]:', err.message);
-              res.end(JSON.stringify({error: 'Something went wrong...'}));
+              res.end(JSON.stringify({ error: 'Something went wrong...' }));
             } else {
               req.body.modules.map(val => {
                 db.query(
@@ -23,7 +23,7 @@ export function post(req, res) {
                     if (err) {
                       console.log('[mysql]:', err.message);
                       res.end(
-                        JSON.stringify({error: 'Something went wrong...'})
+                        JSON.stringify({ error: 'Something went wrong...' })
                       );
                     }
                   }
@@ -36,7 +36,7 @@ export function post(req, res) {
                         if (err) {
                           console.log('[mysql]:', err.message);
                           res.end(
-                            JSON.stringify({error: 'Something went wrong...'})
+                            JSON.stringify({ error: 'Something went wrong...' })
                           );
                         }
                       }
@@ -44,11 +44,12 @@ export function post(req, res) {
                   }
                 });
               });
-              res.end(JSON.stringify({message: 'OK'}));
+              res.end(JSON.stringify({ message: 'OK' }));
             }
           }
         );
       }
     }
   );
+  db.end();
 }

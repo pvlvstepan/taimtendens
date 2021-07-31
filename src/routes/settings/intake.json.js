@@ -1,7 +1,7 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function post(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
   db.query(
     `SELECT module.module_id, module.module_name FROM module INNER JOIN intake_module ON intake_module.module_id = module.module_id WHERE intake_module.intake_id = '${req.body.intake}' AND intake_module.active = ${req.body.active};`,
     (err, results) => {
@@ -12,4 +12,5 @@ export function post(req, res) {
       res.end(JSON.stringify(results));
     }
   );
+  db.end();
 }

@@ -1,7 +1,7 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function get(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
   db.query(
     `SELECT * FROM intake_module ORDER BY intake_id ASC`,
     (err, results) => {
@@ -12,4 +12,5 @@ export function get(req, res) {
       res.end(JSON.stringify(results));
     }
   );
+  db.end();
 }

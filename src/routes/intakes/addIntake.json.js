@@ -1,13 +1,13 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function post(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
   db.query(
     `INSERT INTO intake (intake_id, intake_name) VALUES ('${req.body.intake_id}', '${req.body.intake_name}')`,
     err => {
       if (err) {
         console.log('[mysql]:', err.message);
-        res.end(JSON.stringify({error: 'Something went wrong...'}));
+        res.end(JSON.stringify({ error: 'Something went wrong...' }));
       } else {
         req.body.modules.map(val => {
           db.query(
@@ -15,9 +15,9 @@ export function post(req, res) {
             err => {
               if (err) {
                 console.log('[mysql]:', err.message);
-                res.end(JSON.stringify({error: 'Something went wrong...'}));
+                res.end(JSON.stringify({ error: 'Something went wrong...' }));
               } else {
-                res.end(JSON.stringify({message: 'OK'}));
+                res.end(JSON.stringify({ message: 'OK' }));
               }
             }
           );
@@ -25,4 +25,5 @@ export function post(req, res) {
       }
     }
   );
+  db.end();
 }

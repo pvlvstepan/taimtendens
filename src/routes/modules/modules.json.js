@@ -1,7 +1,7 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function get(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
   db.query(
     `SELECT m.module_id, m.module_name, u.first_name, u.last_name FROM module m LEFT JOIN lecturer l ON m.module_id = l.module_id LEFT JOIN user u ON u.user_tp = l.user_tp ORDER BY m.module_name ASC`,
     (err, results) => {
@@ -12,4 +12,5 @@ export function get(req, res) {
       res.end(JSON.stringify(results));
     }
   );
+  db.end();
 }

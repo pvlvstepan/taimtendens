@@ -1,7 +1,7 @@
-import {initDB} from '@lib/mysql';
+import { initDB } from '@lib/mysql';
 
 export function post(req, res) {
-  const {db} = initDB();
+  const { db } = initDB();
 
   const {
     first_name,
@@ -19,14 +19,14 @@ export function post(req, res) {
     err => {
       if (err) {
         console.log('[mysql]:', err.message);
-        res.end(JSON.stringify({error: 'Something went wrong...'}));
+        res.end(JSON.stringify({ error: 'Something went wrong...' }));
       } else {
         db.query(
           `SELECT user_tp FROM user ORDER BY last_edited DESC LIMIT 1`,
           (err, results) => {
             if (err) {
               console.log('[mysql]:', err.message);
-              res.end(JSON.stringify({error: 'Something went wrong...'}));
+              res.end(JSON.stringify({ error: 'Something went wrong...' }));
             } else {
               if (role_id === 0) {
                 db.query(
@@ -37,10 +37,10 @@ export function post(req, res) {
                     if (err) {
                       console.log('[mysql]:', err.message);
                       res.end(
-                        JSON.stringify({error: 'Something went wrong...'})
+                        JSON.stringify({ error: 'Something went wrong...' })
                       );
                     } else {
-                      res.end(JSON.stringify({message: 'OK'}));
+                      res.end(JSON.stringify({ message: 'OK' }));
                     }
                   }
                 );
@@ -53,15 +53,15 @@ export function post(req, res) {
                     if (err) {
                       console.log('[mysql]:', err.message);
                       res.end(
-                        JSON.stringify({error: 'Something went wrong...'})
+                        JSON.stringify({ error: 'Something went wrong...' })
                       );
                     } else {
-                      res.end(JSON.stringify({message: 'OK'}));
+                      res.end(JSON.stringify({ message: 'OK' }));
                     }
                   }
                 );
               } else {
-                res.end(JSON.stringify({message: 'OK'}));
+                res.end(JSON.stringify({ message: 'OK' }));
               }
             }
           }
@@ -69,4 +69,5 @@ export function post(req, res) {
       }
     }
   );
+  db.end();
 }
