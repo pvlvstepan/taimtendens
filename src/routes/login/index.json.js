@@ -11,14 +11,18 @@ export function post(req, res) {
       if (err) {
         console.log('[mysql]:', err.message);
         res.end(JSON.stringify({ error: 'Something went wrong...' }));
+        db.end();
       } else if (results.length < 1) {
         res.end(JSON.stringify({ error: 'Wrong TP Number or password' }));
+        db.end();
       } else {
         req.session.token = tpNumber;
         req.session.isLoggedIn = true;
         res.end(JSON.stringify({ message: 'Login success', token: tpNumber }));
+        db.end();
       }
+
     }
   );
-  db.end();
+
 }

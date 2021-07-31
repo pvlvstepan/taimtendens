@@ -8,6 +8,7 @@ export function post(req, res) {
       if (err) {
         console.log('[mysql]:', err.message);
         res.end(JSON.stringify({ error: 'Something went wrong...' }));
+        db.end();
       } else {
         db.query(
           `SELECT timetable_id FROM timetable ORDER BY added DESC LIMIT 1`,
@@ -15,6 +16,7 @@ export function post(req, res) {
             if (err) {
               console.log('[mysql]:', err.message);
               res.end(JSON.stringify({ error: 'Something went wrong...' }));
+              db.end();
             } else {
               db.query(
                 `INSERT INTO timetable_module (module_id, timetable_id, time_start, time_end, date, timeslot_id, slot_is_open, location, was_signed) VALUES ('${req.body.module_id
@@ -25,9 +27,12 @@ export function post(req, res) {
                   if (err) {
                     console.log('[mysql]:', err.message);
                     res.end(JSON.stringify({ error: 'Something went wrong...' }));
+                    db.end();
                   } else {
                     res.end(JSON.stringify({ message: 'OK' }));
+                    db.end();
                   }
+
                 }
               );
             }
@@ -36,5 +41,4 @@ export function post(req, res) {
       }
     }
   );
-  db.end();
 }

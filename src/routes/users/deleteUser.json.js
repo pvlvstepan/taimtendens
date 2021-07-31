@@ -9,22 +9,25 @@ export function post(req, res) {
     if (err) {
       console.log('[mysql]:', err.message);
       res.end(JSON.stringify({ error: 'Something went wrong...' }));
+      db.end();
     } else {
       if (role_id === 0) {
         db.query(`DELETE FROM student WHERE user_tp = ${user_tp}`, err => {
           if (err) {
             console.log('[mysql]:', err.message);
             res.end(JSON.stringify({ error: 'Something went wrong...' }));
+            db.end();
           } else {
-            res.end(JSON.stringify({ message: 'OK' }));
-          }
-        });
-        db.query(`DELETE FROM attendance WHERE user_tp = ${user_tp}`, err => {
-          if (err) {
-            console.log('[mysql]:', err.message);
-            res.end(JSON.stringify({ error: 'Something went wrong...' }));
-          } else {
-            res.end(JSON.stringify({ message: 'OK' }));
+            db.query(`DELETE FROM attendance WHERE user_tp = ${user_tp}`, err => {
+              if (err) {
+                console.log('[mysql]:', err.message);
+                res.end(JSON.stringify({ error: 'Something went wrong...' }));
+                db.end();
+              } else {
+                res.end(JSON.stringify({ message: 'OK' }));
+                db.end();
+              }
+            });
           }
         });
       } else if (role_id === 1) {
@@ -32,14 +35,17 @@ export function post(req, res) {
           if (err) {
             console.log('[mysql]:', err.message);
             res.end(JSON.stringify({ error: 'Something went wrong...' }));
+            db.end();
           } else {
             res.end(JSON.stringify({ message: 'OK' }));
+            db.end();
           }
         });
       } else {
         res.end(JSON.stringify({ message: 'OK' }));
+        db.end();
       }
     }
   });
-  db.end();
+
 }

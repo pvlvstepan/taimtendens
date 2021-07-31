@@ -21,6 +21,7 @@ export function post(req, res) {
       if (err) {
         console.log('[mysql]:', err.message);
         res.end(JSON.stringify({ error: 'Something went wrong...' }));
+        db.end();
       } else {
         if (role_id === 0) {
           db.query(
@@ -29,8 +30,10 @@ export function post(req, res) {
               if (err) {
                 console.log('[mysql]:', err.message);
                 res.end(JSON.stringify({ error: 'Something went wrong...' }));
+                db.end();
               } else {
                 res.end(JSON.stringify({ message: 'OK' }));
+                db.end();
               }
             }
           );
@@ -41,16 +44,18 @@ export function post(req, res) {
               if (err) {
                 console.log('[mysql]:', err.message);
                 res.end(JSON.stringify({ error: 'Something went wrong...' }));
+                db.end();
               } else {
                 res.end(JSON.stringify({ message: 'OK' }));
+                db.end();
               }
             }
           );
         } else {
           res.end(JSON.stringify({ message: 'OK' }));
+          db.end();
         }
       }
     }
   );
-  db.end();
 }

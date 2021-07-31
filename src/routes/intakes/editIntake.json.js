@@ -8,6 +8,7 @@ export function post(req, res) {
       if (err) {
         console.log('[mysql]:', err.message);
         res.end(JSON.stringify({ error: 'Something went wrong...' }));
+        db.end();
       } else {
         db.query(
           `DELETE FROM intake_module WHERE intake_id = '${req.body.intake_id}'`,
@@ -15,6 +16,7 @@ export function post(req, res) {
             if (err) {
               console.log('[mysql]:', err.message);
               res.end(JSON.stringify({ error: 'Something went wrong...' }));
+              db.end();
             } else {
               req.body.modules.map(val => {
                 db.query(
@@ -25,31 +27,33 @@ export function post(req, res) {
                       res.end(
                         JSON.stringify({ error: 'Something went wrong...' })
                       );
+                      db.end();
+                    } else {
+                      req.body.activeModules.map(value => {
+                        if (val === value) {
+                          db.query(
+                            `UPDATE intake_module SET active = 1 WHERE intake_id = '${req.body.intake_id}' AND module_id = '${val}'`,
+                            err => {
+                              if (err) {
+                                console.log('[mysql]:', err.message);
+                                res.end(
+                                  JSON.stringify({ error: 'Something went wrong...' })
+                                );
+                              }
+                            }
+                          );
+                        }
+                      });
+                      db.end();
                     }
                   }
                 );
-                req.body.activeModules.map(value => {
-                  if (val === value) {
-                    db.query(
-                      `UPDATE intake_module SET active = 1 WHERE intake_id = '${req.body.intake_id}' AND module_id = '${val}'`,
-                      err => {
-                        if (err) {
-                          console.log('[mysql]:', err.message);
-                          res.end(
-                            JSON.stringify({ error: 'Something went wrong...' })
-                          );
-                        }
-                      }
-                    );
-                  }
-                });
               });
-              res.end(JSON.stringify({ message: 'OK' }));
             }
           }
         );
       }
     }
   );
-  db.end();
+
 }

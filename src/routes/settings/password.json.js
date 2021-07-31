@@ -11,10 +11,12 @@ export function post(req, res) {
       if (err) {
         console.log('[mysql]:', err.message);
         res.end(JSON.stringify({ error: 'Something went wrong...' }));
+        db.end();
       } else {
         res.end(JSON.stringify({ message: 'UPDATE success' }));
+        db.end();
       }
+
     }
   );
-  db.end();
 }

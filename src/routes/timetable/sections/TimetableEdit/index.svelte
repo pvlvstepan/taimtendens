@@ -9,15 +9,18 @@
   } from 'svelte-materialify/src';
   import Datepicker from 'svelte-calendar';
   import Card from '../../../../components/Card/Card.svelte';
-  import { getMonday } from '../../../../utils/getFirstDay';
+  import {getMonday} from '../../../../utils/getFirstDay';
   import dayjs from 'dayjs';
   import tConvert from '../../../../utils/convertTime';
+  import ConfrimModal from '../../../../components/ConfirmModal/index.svelte';
 
   export let intakes, active, currentIntake, modules, editingClass;
 
   console.log(editingClass);
 
   let snackbar = false;
+  let snackbar2 = false;
+  let active2 = false;
   let error = false;
 
   let selectedModule = editingClass.module_id;
@@ -149,6 +152,31 @@
       }
     }
   }
+
+  const deleteClass = async () => {
+    const result = await fetch('timetable/deleteTimetable.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        timeslot_id: editingClass.timeslot_id,
+        timetable_id: editingClass.timetable_id
+      })
+    });
+
+    const response = await result.json();
+
+    if (response.error !== undefined) {
+      error = true;
+      snackbar2 = true;
+      setTimeout(() => (active = false), 2000);
+    } else {
+      snackbar2 = true;
+      setTimeout(() => location.replace('/timetable'), 2000);
+    }
+  };
 </script>
 
 <Dialog persistent bind:active>
@@ -225,6 +253,9 @@
       </form>
       <div slot="card_footer" class="button_wrapper">
         <Button on:click={() => (active = false)} text>Cancel</Button>
+        <Button on:click={() => (active2 = true)} class="red white-text"
+          >Remove class</Button
+        >
         <Button
           disabled={!dateChosen ||
             !time_start.length > 0 ||
@@ -256,6 +287,22 @@
 >
   {error === false ? 'Changes Saved Successfuly' : 'Something went wrong...'}
 </Snackbar>
+
+<Snackbar
+  class="flex-column"
+  bind:active={snackbar2}
+  bottom
+  center
+  timeout={2000}
+>
+  {error === false ? 'Class Deleted from timetable' : 'Something went wrong...'}
+</Snackbar>
+
+<ConfrimModal
+  bind:active={active2}
+  action={() => deleteClass()}
+  message={`Are you sure you want to delete ${editingClass.module_id} from ${currentIntake} timetable on ${formattedSelected}? These changes are irreversible...`}
+/>
 
 <style>
   .dialog_content {
