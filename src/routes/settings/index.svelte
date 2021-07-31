@@ -10,9 +10,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ token: token })
     });
 
     const user = await resultUsers.json();
@@ -21,9 +21,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ intake: user[0].intake_id, active: 1 }),
+      body: JSON.stringify({ intake: user[0].intake_id, active: 1 })
     });
 
     const activeModules = await res1.json();
@@ -32,9 +32,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ intake: user[0].intake_id, active: 0 }),
+      body: JSON.stringify({ intake: user[0].intake_id, active: 0 })
     });
 
     const inactiveModules = await res2.json();
@@ -43,9 +43,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ module_id: user[0].module_id }),
+      body: JSON.stringify({ module_id: user[0].module_id })
     });
 
     const lecturer_intakes = await res3.json();
@@ -54,7 +54,7 @@
       user: user[0],
       activeModules: activeModules,
       inactiveModules: inactiveModules,
-      lecturer_intakes: lecturer_intakes,
+      lecturer_intakes: lecturer_intakes
     };
   }
 </script>

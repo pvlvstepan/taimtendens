@@ -10,7 +10,7 @@
     Button,
     List,
     ListItem as MListItem,
-    Select,
+    Select
   } from 'svelte-materialify/src';
   import tConvert from '../../../../utils/convertTime';
   import { afterUpdate, onMount } from 'svelte';
@@ -21,7 +21,7 @@
     { id: 1, label: 'Tuesday' },
     { id: 2, label: 'Wednesday' },
     { id: 3, label: 'Thursday' },
-    { id: 4, label: 'Friday' },
+    { id: 4, label: 'Friday' }
   ];
 
   let currentTab = 0;
@@ -49,7 +49,7 @@
           'Wednesday',
           'Thursday',
           'Friday',
-          'Saturday',
+          'Saturday'
         ][dayOfWeek];
   }
 

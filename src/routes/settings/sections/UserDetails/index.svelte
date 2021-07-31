@@ -2,8 +2,7 @@
   import {
     Avatar,
     ExpansionPanel,
-    ExpansionPanels,
-    Icon,
+    ExpansionPanels
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
   import ListItem from '../../../../Components/ListItem/ListItem.svelte';

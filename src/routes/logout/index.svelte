@@ -3,9 +3,9 @@
     return await this.fetch('logout.json', {
       body: JSON.stringify(session),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      method: 'POST',
+      method: 'POST'
     });
   }
 </script>

@@ -14,13 +14,13 @@
     {
       id: 0,
       label: 'Today',
-      icon: 'mdi-calendar-today',
+      icon: 'mdi-calendar-today'
     },
     {
       id: 1,
       label: 'Tomorrow',
-      icon: 'mdi-calendar',
-    },
+      icon: 'mdi-calendar'
+    }
   ];
 
   let currentTab = 0;

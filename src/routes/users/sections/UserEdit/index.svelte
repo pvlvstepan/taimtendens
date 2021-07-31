@@ -6,7 +6,7 @@
     Icon,
     Select,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
   import ConfrimModal from '../../../../components/ConfirmModal/index.svelte';
@@ -17,27 +17,27 @@
   const inputs = {
     first_name: {
       isValid: true,
-      value: user.first_name,
+      value: user.first_name
     },
     last_name: {
       isValid: true,
-      value: user.last_name,
+      value: user.last_name
     },
     email: {
       isValid: true,
-      value: user.email,
+      value: user.email
     },
     password: {
       isValid: true,
-      value: user.password,
+      value: user.password
     },
     profile_pic: user.profile_pic,
     intake_id: {
-      value: user.intake_id,
+      value: user.intake_id
     },
     module_id: {
-      value: user.module_id,
-    },
+      value: user.module_id
+    }
   };
 
   const firstNameRules = [
@@ -59,7 +59,7 @@
       }
       inputs.first_name.isValid = true;
       return false;
-    },
+    }
   ];
 
   const lastNameRules = [
@@ -81,7 +81,7 @@
       }
       inputs.last_name.isValid = true;
       return false;
-    },
+    }
   ];
 
   const emailRules = [
@@ -104,7 +104,7 @@
       }
       inputs.email.isValid = true;
       return false;
-    },
+    }
   ];
 
   const passwordRules = [
@@ -125,7 +125,7 @@
       }
       inputs.password.isValid = true;
       return false;
-    },
+    }
   ];
 
   const getBase64 = e => {
@@ -169,7 +169,7 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         user_tp: user.user_tp,
@@ -180,8 +180,8 @@
         password: inputs.password.value,
         profile_pic: inputs.profile_pic,
         intake_id: inputs.intake_id.value,
-        module_id: inputs.module_id.value,
-      }),
+        module_id: inputs.module_id.value
+      })
     });
 
     const response = await result.json();
@@ -201,12 +201,12 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         user_tp: user.user_tp,
-        role_id: user.role_id,
-      }),
+        role_id: user.role_id
+      })
     });
 
     const response = await result.json();

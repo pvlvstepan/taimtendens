@@ -4,7 +4,7 @@
     Dialog,
     Icon,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
 
@@ -18,12 +18,12 @@
   const inputs = {
     email: {
       isValid: false,
-      value: '',
+      value: ''
     },
     password: {
       isValid: false,
-      value: '',
-    },
+      value: ''
+    }
   };
 
   const emailRules = [
@@ -48,7 +48,7 @@
       }
       inputs.email.isValid = true;
       return false;
-    },
+    }
   ];
 
   const passwordRules = [
@@ -71,7 +71,7 @@
       }
       inputs.password.isValid = true;
       return false;
-    },
+    }
   ];
 
   const changeEmail = async () => {
@@ -79,13 +79,13 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         tpNumber: user.user_tp,
         password: inputs.password.value,
-        email: inputs.email.value,
-      }),
+        email: inputs.email.value
+      })
     });
 
     const email = await result.json();
@@ -104,12 +104,12 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         tpNumber: user.user_tp,
-        password: inputs.password.value,
-      }),
+        password: inputs.password.value
+      })
     });
 
     const verify = await result.json();

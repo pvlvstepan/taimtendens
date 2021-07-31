@@ -13,7 +13,7 @@
     CardText,
     CardTitle,
     Icon,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import { goto, stores } from '@sapper/app';
   const { session } = stores();
@@ -23,12 +23,12 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         tpNumber: inputs.tpNumber.value.substring(2),
-        password: inputs.password.value,
-      }),
+        password: inputs.password.value
+      })
     });
 
     const login = await result.json();
@@ -49,12 +49,12 @@
   const inputs = {
     tpNumber: {
       isValid: false,
-      value: '',
+      value: ''
     },
     password: {
       isValid: false,
-      value: '',
-    },
+      value: ''
+    }
   };
 
   const passwordRules = [
@@ -77,7 +77,7 @@
       }
       inputs.password.isValid = true;
       return false;
-    },
+    }
   ];
   const tpRules = [
     v => {
@@ -100,7 +100,7 @@
       }
       inputs.tpNumber.isValid = true;
       return false;
-    },
+    }
   ];
 </script>
 

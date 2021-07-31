@@ -15,11 +15,11 @@
           {
             label: 'Attendance',
             data: [attendance, 100 - attendance],
-            backgroundColor: ['#4caf50', '#f44336'],
-          },
-        ],
+            backgroundColor: ['#4caf50', '#f44336']
+          }
+        ]
       },
-      options,
+      options
     });
   };
 

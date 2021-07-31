@@ -5,7 +5,7 @@
     Icon,
     Select,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
 
@@ -28,16 +28,16 @@
   const inputs = {
     intake_id: {
       value: intake.intake_id,
-      isValid: true,
+      isValid: true
     },
     intake_name: {
       value: intake.intake_name,
-      isValid: true,
+      isValid: true
     },
     selectedModules: {
       value: selectedModules,
-      isValid: false,
-    },
+      isValid: false
+    }
   };
 
   const checkSelection = () => {
@@ -68,7 +68,7 @@
       }
       inputs.intake_name.isValid = true;
       return false;
-    },
+    }
   ];
 
   let snackbar = false;
@@ -79,14 +79,14 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         intake_id: inputs.intake_id.value,
         intake_name: inputs.intake_name.value,
         modules: inputs.selectedModules.value,
-        activeModules: activeModules,
-      }),
+        activeModules: activeModules
+      })
     });
 
     const response = await result.json();

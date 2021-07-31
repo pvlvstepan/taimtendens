@@ -12,7 +12,7 @@
 
   const filterUsers = term => {
     SearchTerm = term;
-    sortedUsers = users.filter((value, index) => {
+    sortedUsers = users.filter(value => {
       if (currentTab === 3) {
         return (
           (value.first_name + ' ' + value.last_name)
@@ -53,20 +53,20 @@
   const tabs = [
     {
       id: 3,
-      label: 'All',
+      label: 'All'
     },
     {
       id: 0,
-      label: 'Students',
+      label: 'Students'
     },
     {
       id: 1,
-      label: 'Lecturers',
+      label: 'Lecturers'
     },
     {
       id: 2,
-      label: 'Admins',
-    },
+      label: 'Admins'
+    }
   ];
 
   let currentTab = 3;

@@ -4,7 +4,7 @@
     Dialog,
     Icon,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
 
@@ -19,16 +19,16 @@
   const inputs = {
     newPass: {
       isValid: false,
-      value: '',
+      value: ''
     },
     repeatPass: {
       isValid: false,
-      value: '',
+      value: ''
     },
     password: {
       isValid: false,
-      value: '',
-    },
+      value: ''
+    }
   };
 
   const passwordRules = [
@@ -51,7 +51,7 @@
       }
       inputs.password.isValid = true;
       return false;
-    },
+    }
   ];
 
   const newPassRules = [
@@ -74,7 +74,7 @@
       }
       inputs.newPass.isValid = true;
       return false;
-    },
+    }
   ];
 
   const repNewPassRules = [
@@ -87,7 +87,7 @@
       }
       inputs.repeatPass.isValid = true;
       return false;
-    },
+    }
   ];
 
   const changePassword = async () => {
@@ -95,13 +95,13 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         tpNumber: user.user_tp,
         password: inputs.password.value,
-        newPass: inputs.newPass.value,
-      }),
+        newPass: inputs.newPass.value
+      })
     });
 
     const password = await result.json();
@@ -120,12 +120,12 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         tpNumber: user.user_tp,
-        password: inputs.password.value,
-      }),
+        password: inputs.password.value
+      })
     });
 
     const verify = await result.json();

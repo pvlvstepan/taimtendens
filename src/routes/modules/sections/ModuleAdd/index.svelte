@@ -4,7 +4,7 @@
     Dialog,
     Icon,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
 
@@ -13,12 +13,12 @@
   const inputs = {
     module_id: {
       value: '',
-      isValid: false,
+      isValid: false
     },
     module_name: {
       value: '',
-      isValid: false,
-    },
+      isValid: false
+    }
   };
 
   const moduleIDrules = [
@@ -40,7 +40,7 @@
       }
       inputs.module_id.isValid = true;
       return false;
-    },
+    }
   ];
 
   const moduleNamerules = [
@@ -62,7 +62,7 @@
       }
       inputs.module_name.isValid = true;
       return false;
-    },
+    }
   ];
 
   let snackbar = false;
@@ -73,12 +73,12 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         module_id: inputs.module_id.value,
-        module_name: inputs.module_name.value,
-      }),
+        module_name: inputs.module_name.value
+      })
     });
 
     const response = await result.json();

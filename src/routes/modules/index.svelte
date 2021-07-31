@@ -8,8 +8,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const modules = await results.json();
@@ -18,15 +18,15 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const intake_modules = await results2.json();
 
     return {
       modules: modules,
-      intake_modules: intake_modules,
+      intake_modules: intake_modules
     };
   }
 </script>

@@ -6,7 +6,7 @@
     Icon,
     Select,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
   import Tabs from '../../../../components/Tabs/Tabs.svelte';
@@ -17,33 +17,33 @@
   const inputs = {
     first_name: {
       isValid: false,
-      value: '',
+      value: ''
     },
     last_name: {
       isValid: false,
-      value: '',
+      value: ''
     },
     email: {
       isValid: false,
-      value: '',
+      value: ''
     },
     password: {
       isValid: false,
-      value: '',
+      value: ''
     },
     profile_pic: '',
     role_id: {
       isValid: false,
-      value: '',
+      value: ''
     },
     intake_id: {
       value: '',
-      isValid: false,
+      isValid: false
     },
     module_id: {
       value: '',
-      isValid: false,
-    },
+      isValid: false
+    }
   };
 
   const firstNameRules = [
@@ -65,7 +65,7 @@
       }
       inputs.first_name.isValid = true;
       return false;
-    },
+    }
   ];
 
   const lastNameRules = [
@@ -87,7 +87,7 @@
       }
       inputs.last_name.isValid = true;
       return false;
-    },
+    }
   ];
 
   const emailRules = [
@@ -110,7 +110,7 @@
       }
       inputs.email.isValid = true;
       return false;
-    },
+    }
   ];
 
   const passwordRules = [
@@ -131,7 +131,7 @@
       }
       inputs.password.isValid = true;
       return false;
-    },
+    }
   ];
 
   const getBase64 = e => {
@@ -154,16 +154,16 @@
   const tabs = [
     {
       id: 0,
-      label: 'Student',
+      label: 'Student'
     },
     {
       id: 1,
-      label: 'Lecturer',
+      label: 'Lecturer'
     },
     {
       id: 2,
-      label: 'Admin',
-    },
+      label: 'Admin'
+    }
   ];
 
   let currentTab;
@@ -208,7 +208,7 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         first_name: inputs.first_name.value,
@@ -218,8 +218,8 @@
         password: inputs.password.value,
         profile_pic: inputs.profile_pic,
         intake_id: inputs.intake_id.value,
-        module_id: inputs.module_id.value,
-      }),
+        module_id: inputs.module_id.value
+      })
     });
 
     const response = await result.json();

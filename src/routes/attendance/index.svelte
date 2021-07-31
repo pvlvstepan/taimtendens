@@ -10,9 +10,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ token: token })
     });
 
     const user = await resultUsers.json();
@@ -21,18 +21,18 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         intake_id: user[0].intake_id,
-        user_tp: user[0].user_tp,
-      }),
+        user_tp: user[0].user_tp
+      })
     });
 
     const attendance = await resAttendance.json();
 
     return {
-      attendance: attendance,
+      attendance: attendance
     };
   }
 </script>

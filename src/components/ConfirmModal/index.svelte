@@ -2,9 +2,7 @@
   import { Button, Dialog, Icon } from 'svelte-materialify/src';
   import Card from '../../components/Card/Card.svelte';
 
-  export let active;
-  export let message;
-  export let action;
+  export let active, message, action;
 </script>
 
 <Dialog

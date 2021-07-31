@@ -1,6 +1,6 @@
 <script>
   import Card from '../../../../components/Card/Card.svelte';
-  import { Button, Icon } from 'svelte-materialify/src';
+  import { Icon } from 'svelte-materialify/src';
   import ListItem from '../../../../components/ListItem/ListItem.svelte';
 
   export let current;

@@ -1,23 +1,23 @@
 export const options = {
   layout: {
-    padding: 20,
+    padding: 20
   },
   cutout: '90%',
   plugins: {
     tooltip: {
-      enabled: false,
+      enabled: false
     },
     legend: {
-      display: false,
-    },
+      display: false
+    }
   },
   scales: {
     y: {
-      display: false,
+      display: false
     },
     x: {
-      display: false,
-    },
+      display: false
+    }
   },
-  responsive: true,
+  responsive: true
 };

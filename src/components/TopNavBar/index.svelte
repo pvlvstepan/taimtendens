@@ -1,9 +1,10 @@
 <script>
-  export let segment;
-
   import { AppBar, Button, Icon } from 'svelte-materialify/src';
   import { goto, stores } from '@sapper/app';
   import { onMount } from 'svelte';
+
+  export let segment;
+
   const { session } = stores();
 
   let isMounded = false;
@@ -12,36 +13,36 @@
     {
       title: 'Users',
       href: 'users',
-      icon: 'mdi-account',
+      icon: 'mdi-account'
     },
     {
       title: 'Intakes',
       href: 'intakes',
-      icon: 'mdi-school',
+      icon: 'mdi-school'
     },
     {
       title: 'Modules',
       href: 'modules',
-      icon: 'mdi-book-open-variant',
-    },
+      icon: 'mdi-book-open-variant'
+    }
   ];
 
   let pages = [
     {
       title: 'Dashboard',
       href: 'dashboard',
-      icon: 'mdi-view-dashboard',
+      icon: 'mdi-view-dashboard'
     },
     {
       title: 'Attendance',
       href: 'attendance',
-      icon: 'mdi-clock-check',
+      icon: 'mdi-clock-check'
     },
     {
       title: 'Timetable',
       href: 'timetable',
-      icon: 'mdi-timetable',
-    },
+      icon: 'mdi-timetable'
+    }
   ];
 
   const loadUser = async () => {
@@ -50,9 +51,9 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json'
         },
-        body: JSON.stringify({ token: $session.token }),
+        body: JSON.stringify({ token: $session.token })
       });
 
       const user = await resultUsers.json();

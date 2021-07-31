@@ -1,11 +1,11 @@
 <script>
   import { Button, Dialog, Icon } from 'svelte-materialify/src';
-  import Card from '../../components/Card/Card.svelte';
   import { signAttendanceIsOpen } from '../../stores.js';
+  import Card from '../../components/Card/Card.svelte';
 
-  let active;
-  let isValid = false;
-  let values = [];
+  let active,
+    isValid = false,
+    values = [];
 
   signAttendanceIsOpen.subscribe(value => {
     active = value;

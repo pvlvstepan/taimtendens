@@ -8,8 +8,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const intakes = await results.json();
@@ -18,8 +18,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const intake_modules = await results2.json();
@@ -28,8 +28,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const modules = await results3.json();
@@ -37,7 +37,7 @@
     return {
       intakes: intakes,
       intake_modules: intake_modules,
-      modules: modules,
+      modules: modules
     };
   }
 </script>
@@ -53,8 +53,8 @@
   export let modules = [];
 
   let intakeAddisOpen = false,
-    intakeEditIsOpen = false;
-  let editingIntake;
+    intakeEditIsOpen = false,
+    editingIntake;
 </script>
 
 <svelte:head>TaimTendens | Intakes</svelte:head>

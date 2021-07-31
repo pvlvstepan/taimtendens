@@ -4,7 +4,7 @@
     Checkbox,
     Icon,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
 
   import Card from '../../../../components/Card/Card.svelte';
@@ -20,7 +20,7 @@
 
   const filterIntakes = term => {
     const SearchTerm = term;
-    sortedIntakes = intakes.filter((value, index) => {
+    sortedIntakes = intakes.filter(value => {
       return (
         (value.intake_id ? value.intake_id : '')
           .toLowerCase()
@@ -40,13 +40,13 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         intake_id: intake_id,
         module_id: module_id,
-        active: value ? 1 : 0,
-      }),
+        active: value ? 1 : 0
+      })
     });
 
     const response = await result.json();

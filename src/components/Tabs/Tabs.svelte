@@ -1,17 +1,14 @@
 <script>
-  export let tabs;
-  export let currentTab;
-  export let full;
-
   import { Button, Icon } from 'svelte-materialify/src';
-
   import { createEventDispatcher } from 'svelte';
+
+  export let tabs, currentTab, full;
 
   const dispatch = createEventDispatcher();
 
   const changeTab = val => {
     dispatch('change', {
-      id: val,
+      id: val
     });
   };
 </script>

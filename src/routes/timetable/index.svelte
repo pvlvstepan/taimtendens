@@ -10,9 +10,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ token: token })
     });
 
     const user = await resultUsers.json();
@@ -21,8 +21,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const intakes = await intakeRes.json();
@@ -56,13 +56,13 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            Accept: 'application/json'
           },
           body: JSON.stringify({
             intake: user.role_id === 2 ? currentIntake : user.intake_id,
             nextWeek: nextWeek,
-            module_id: user.module_id,
-          }),
+            module_id: user.module_id
+          })
         }
       );
       timetable = await results.json();
@@ -75,11 +75,11 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json'
         },
         body: JSON.stringify({
-          intake_id: currentIntake,
-        }),
+          intake_id: currentIntake
+        })
       });
       modules = await results.json();
     }

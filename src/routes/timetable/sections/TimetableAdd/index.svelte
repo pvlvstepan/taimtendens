@@ -5,7 +5,7 @@
     Icon,
     Select,
     Snackbar,
-    TextField,
+    TextField
   } from 'svelte-materialify/src';
   import Datepicker from 'svelte-calendar';
   import Card from '../../../../components/Card/Card.svelte';
@@ -24,7 +24,7 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         module_id: selectedModule,
@@ -32,8 +32,8 @@
         time_start: time_start,
         time_end: time_end,
         date: convertToSqlFormat(formattedSelected),
-        location: inputs.location.value,
-      }),
+        location: inputs.location.value
+      })
     });
 
     const response = await result.json();
@@ -87,8 +87,8 @@
   const inputs = {
     location: {
       value: '',
-      isValid: false,
-    },
+      isValid: false
+    }
   };
 
   const locationRules = [
@@ -110,7 +110,7 @@
       }
       inputs.location.isValid = true;
       return false;
-    },
+    }
   ];
 
   var times = [],
@@ -136,7 +136,7 @@
               ('0' + min).slice(-2) +
               ' ' +
               periods[prop]
-          ),
+          )
         });
       }
     }

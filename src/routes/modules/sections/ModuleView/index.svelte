@@ -14,7 +14,7 @@
 
   const filterModules = term => {
     const SearchTerm = term;
-    sortedModules = modules.filter((value, index) => {
+    sortedModules = modules.filter(value => {
       return (
         (value.first_name + ' ' + value.last_name)
           .toLowerCase()

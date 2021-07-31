@@ -10,9 +10,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ token: token })
     });
 
     let today = new Date();
@@ -29,13 +29,13 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json'
         },
         body: JSON.stringify({
           intake: user[0].intake_id,
           date: today,
-          module_id: user[0].module_id,
-        }),
+          module_id: user[0].module_id
+        })
       }
     );
 
@@ -47,13 +47,13 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json'
         },
         body: JSON.stringify({
           intake: user[0].intake_id,
           date: tomorrow,
-          module_id: user[0].module_id,
-        }),
+          module_id: user[0].module_id
+        })
       }
     );
 
@@ -65,13 +65,13 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json'
         },
         body: JSON.stringify({
           intake_id: user[0].intake_id,
           user_tp: user[0].user_tp,
-          module_id: user[0].module_id,
-        }),
+          module_id: user[0].module_id
+        })
       }
     );
 
@@ -81,7 +81,7 @@
       user: user[0],
       timetableToday: timetableToday,
       timetableTomorrow: timetableTomorrow,
-      attendance: attendance,
+      attendance: attendance
     };
   }
 </script>

@@ -10,9 +10,9 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ token: token })
     });
 
     const user = await resultUsers.json();
@@ -21,8 +21,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const users = await allUsers.json();
@@ -31,8 +31,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const intakes = await allIntakes.json();
@@ -41,8 +41,8 @@
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+        Accept: 'application/json'
+      }
     });
 
     const modules = await allModules.json();
@@ -54,7 +54,7 @@
     return {
       users: users,
       modules: modules,
-      intakes: intakes,
+      intakes: intakes
     };
   }
 </script>
