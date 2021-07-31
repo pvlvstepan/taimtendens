@@ -10,6 +10,7 @@
     Button,
     List,
     ListItem as MListItem,
+    Select,
   } from 'svelte-materialify/src';
   import tConvert from '../../../../utils/convertTime';
   import { afterUpdate, onMount } from 'svelte';
@@ -31,6 +32,11 @@
 
   export let timetable;
   export let nextWeek;
+  export let user, intakes, currentIntake;
+  export let timetableAddIsOpen;
+  export let editingClass, classEditIsOpen;
+
+  currentIntake = intakes[0].value;
 
   function getDayOfWeek(date) {
     const dayOfWeek = new Date(date).getDay();
@@ -91,6 +97,15 @@
         </List>
       </Menu>
     </div>
+    {#if user.role_id === 2}
+      <Select
+        dense
+        outlined
+        mandatory
+        items={intakes}
+        bind:value={currentIntake}>Intake</Select
+      >
+    {/if}
     <Tabs {tabs} {currentTab} on:change={changeTab} full />
     <Window value={currentTab}>
       {#each tabs as day}
@@ -121,6 +136,21 @@
                     />
                     {day_class.location}
                   </div>
+                  <svelte:fragment slot="right_element">
+                    {#if day_class.was_signed === 0}
+                      <Button
+                        text
+                        icon
+                        class="edit_button"
+                        on:click={() => {
+                          editingClass = day_class;
+                          classEditIsOpen = true;
+                        }}
+                      >
+                        <Icon class="mdi mdi-calendar-sync" />
+                      </Button>
+                    {/if}
+                  </svelte:fragment>
                 </ListItem>
               {/each}
             </div>
@@ -132,6 +162,11 @@
         </WindowItem>
       {/each}
     </Window>
+    {#if user.role_id === 2}
+      <Button class="primary-color" on:click={() => (timetableAddIsOpen = true)}
+        >Add class to timetable</Button
+      >
+    {/if}
   </svelte:fragment>
 </Card>
 

@@ -6,6 +6,9 @@ a {
 .s-dialog__content {
   border-radius: 14px;
 }
+.contents {
+  border-radius: 14px;
+}
 .s-dialog__content {
   overflow-y: visible;
 }

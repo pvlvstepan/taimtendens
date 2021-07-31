@@ -2,21 +2,11 @@ import { initDB } from '@lib/mysql';
 
 export function post(req, res) {
   const { db } = initDB();
-  if (req.body.nextWeek === false) {
-    db.query(`SELECT module.module_id, module.module_name, timetable_module.location, timetable_module.date, timetable_module.time_start, timetable_module.time_end FROM timetable_module INNER JOIN module ON module.module_id = timetable_module.module_id INNER JOIN timetable ON timetable.timetable_id = timetable_module.timetable_id INNER JOIN intake_module ON intake_module.module_id = timetable_module.module_id WHERE timetable.intake_id = '${req.body.intake}' AND yearweek(DATE(timetable_module.date), 1) = yearweek(curdate(), 1) AND intake_module.active = 1;`, (err, results, fields) => {
-      if (err) throw err;
-      res.writeHead(200, {
-        'Content-Type': 'application/json'
-      });
-      res.end(JSON.stringify(results));
+  db.query(`SELECT DISTINCT m.module_id, m.module_name, tm.location, tm.date, tm.was_signed, tm.time_start, tm.time_end FROM timetable_module tm INNER JOIN module m ON m.module_ID = tm.module_id INNER JOIN timetable t ON t.timetable_id = tm.timetable_id INNER JOIN intake_module im ON im.intake_id = t.intake_id WHERE t.intake_id = '${req.body.intake}' AND im.active = 1 AND ${req.body.nextWeek === false ? 'yearweek(DATE(tm.date), 1) = yearweek(curdate(), 1)' : 'yearweek(DATE(tm.date), 1) = yearweek(DATE_ADD(curdate(), INTERVAL 7 DAY), 1)'}`, (err, results, fields) => {
+    if (err) throw err;
+    res.writeHead(200, {
+      'Content-Type': 'application/json'
     });
-  } else {
-    db.query(`SELECT module.module_id, module.module_name, timetable_module.location, timetable_module.date, timetable_module.time_start, timetable_module.time_end FROM timetable_module INNER JOIN module ON module.module_id = timetable_module.module_id INNER JOIN timetable ON timetable.timetable_id = timetable_module.timetable_id INNER JOIN intake_module ON intake_module.module_id = timetable_module.module_id WHERE timetable.intake_id = '${req.body.intake}' AND yearweek(DATE(timetable_module.date), 1) = yearweek(DATE_ADD(curdate(), INTERVAL 7 DAY), 1) AND intake_module.active = 1;`, (err, results, fields) => {
-      if (err) throw err;
-      res.writeHead(200, {
-        'Content-Type': 'application/json'
-      });
-      res.end(JSON.stringify(results));
-    });
-  }
+    res.end(JSON.stringify(results));
+  });
 }
