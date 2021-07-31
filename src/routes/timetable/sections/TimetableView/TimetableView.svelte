@@ -149,6 +149,10 @@
                       >
                         <Icon class="mdi mdi-calendar-sync" />
                       </Button>
+                    {:else}
+                      <Button text icon class="edit_button" disabled>
+                        <Icon class="mdi mdi-calendar-sync" />
+                      </Button>
                     {/if}
                   </svelte:fragment>
                 </ListItem>

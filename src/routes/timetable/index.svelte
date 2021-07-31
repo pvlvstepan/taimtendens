@@ -36,6 +36,7 @@
   import CardWrapper from '../../components/CardWrapper/CardWrapper.svelte';
   import TimetableView from './sections/TimetableView/TimetableView.svelte';
   import TimetableAdd from './sections/TimetableAdd/index.svelte';
+  import TimetableEdit from './sections/TimetableEdit/index.svelte';
 
   export let user;
   export let intakes = [];
@@ -112,6 +113,15 @@
       <TimetableAdd
         bind:active={timetableAddIsOpen}
         bind:currentIntake
+        {intakes}
+        {modules}
+      />
+    {/if}
+    {#if classEditIsOpen}
+      <TimetableEdit
+        bind:active={classEditIsOpen}
+        bind:currentIntake
+        {editingClass}
         {intakes}
         {modules}
       />

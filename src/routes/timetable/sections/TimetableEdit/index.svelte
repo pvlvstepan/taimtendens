@@ -11,16 +11,19 @@
   import Card from '../../../../components/Card/Card.svelte';
   import { getMonday } from '../../../../utils/getFirstDay';
   import dayjs from 'dayjs';
+  import tConvert from '../../../../utils/convertTime';
 
-  export let intakes, active, currentIntake, modules;
+  export let intakes, active, currentIntake, modules, editingClass;
+
+  console.log(editingClass);
 
   let snackbar = false;
   let error = false;
 
-  let selectedModule;
+  let selectedModule = editingClass.module_id;
 
-  const addTimetable = async () => {
-    const result = await fetch('timetable/addTimetable.json', {
+  const editTimetable = async () => {
+    const result = await fetch('timetable/editTimetable.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,11 +31,11 @@
       },
       body: JSON.stringify({
         module_id: selectedModule,
-        intake_id: currentIntake,
         time_start: time_start,
         time_end: time_end,
         date: convertToSqlFormat(formattedSelected),
         location: inputs.location.value,
+        timeslot_id: editingClass.timeslot_id,
       }),
     });
 
@@ -54,13 +57,18 @@
     return date;
   };
 
-  let formattedSelected, dateChosen;
+  let formattedSelected,
+    dateChosen = true;
 
   let minDate = getMonday(new Date());
   let maxDate = minDate.addDays(13);
 
-  let time_start;
-  let time_end;
+  let time_start = tConvert(
+    editingClass.time_start.slice(0, editingClass.time_start.length - 3)
+  );
+  let time_end = tConvert(
+    editingClass.time_end.slice(0, editingClass.time_end.length - 3)
+  );
 
   const convertToSqlFormat = date => {
     const [dd, mm, yyyy] = date.split('/');
@@ -86,8 +94,8 @@
 
   const inputs = {
     location: {
-      value: '',
-      isValid: false,
+      value: editingClass.location,
+      isValid: true,
     },
   };
 
@@ -153,14 +161,14 @@
       ><Icon class="mdi mdi-close" /></Button
     >
     <Card>
-      <svelte:fragment slot="card_title">Add class to timetable</svelte:fragment
-      >
+      <svelte:fragment slot="card_title">Edit Timetable Class</svelte:fragment>
       <form slot="card_body">
         <Select
           class="mb-4"
           dense
           outlined
           mandatory
+          disabled
           items={intakes}
           bind:value={currentIntake}>Intake</Select
         >
@@ -180,6 +188,7 @@
             end={maxDate}
             bind:formattedSelected
             bind:dateChosen
+            selected={new Date(editingClass.date)}
             style="border-radius: 15px"
           >
             <Button class="primary-color">
@@ -207,7 +216,12 @@
           items={times}
           bind:value={time_end}>End Time</Select
         >
-        <TextField rules={locationRules} dense outlined>Location</TextField>
+        <TextField
+          rules={locationRules}
+          dense
+          outlined
+          bind:value={inputs.location.value}>Location</TextField
+        >
       </form>
       <div slot="card_footer" class="button_wrapper">
         <Button on:click={() => (active = false)} text>Cancel</Button>
@@ -226,7 +240,7 @@
           !inputs.location.isValid
             ? ''
             : 'primary-color'}
-          on:click={() => addTimetable()}>Add Class to timetable</Button
+          on:click={() => editTimetable()}>Save changes</Button
         >
       </div>
     </Card>
@@ -240,7 +254,7 @@
   center
   timeout={2000}
 >
-  {error === false ? 'Class Added Successfuly' : 'Something went wrong...'}
+  {error === false ? 'Changes Saved Successfuly' : 'Something went wrong...'}
 </Snackbar>
 
 <style>
