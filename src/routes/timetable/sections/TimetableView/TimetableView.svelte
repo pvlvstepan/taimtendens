@@ -13,15 +13,15 @@
     Select
   } from 'svelte-materialify/src';
   import tConvert from '../../../../utils/convertTime';
-  import { afterUpdate, onMount } from 'svelte';
-  import { getMonday } from '../../../../utils/getFirstDay';
+  import {afterUpdate, onMount} from 'svelte';
+  import {getMonday} from '../../../../utils/getFirstDay';
 
   const tabs = [
-    { id: 0, label: 'Monday' },
-    { id: 1, label: 'Tuesday' },
-    { id: 2, label: 'Wednesday' },
-    { id: 3, label: 'Thursday' },
-    { id: 4, label: 'Friday' }
+    {id: 0, label: 'Monday'},
+    {id: 1, label: 'Tuesday'},
+    {id: 2, label: 'Wednesday'},
+    {id: 3, label: 'Thursday'},
+    {id: 4, label: 'Friday'}
   ];
 
   let currentTab = 0;
@@ -116,7 +116,10 @@
                 <ListItem>
                   <svelte:fragment slot="left_element" />
                   <svelte:fragment slot="body_title"
-                    >{day_class.module_name || day_class.intake_id} ({day_class.module_id})</svelte:fragment
+                    >{day_class.module_name} -
+                    <span class="primary-text"
+                      >{day_class.module_id || day_class.intake_id}</span
+                    ></svelte:fragment
                   >
                   <div class="green-text row_items" slot="body_content">
                     <Icon class="mdi mdi-clock-outline" size="16px" />
@@ -137,7 +140,7 @@
                     {day_class.location}
                   </div>
                   <svelte:fragment slot="right_element">
-                    {#if day_class.was_signed === 0}
+                    {#if day_class.was_signed === 0 && user.role_id === 2}
                       <Button
                         text
                         icon
@@ -149,7 +152,7 @@
                       >
                         <Icon class="mdi mdi-calendar-sync" />
                       </Button>
-                    {:else}
+                    {:else if day_class.was_signed === 1 && user.role_id === 2}
                       <Button text icon class="edit_button" disabled>
                         <Icon class="mdi mdi-calendar-sync" />
                       </Button>
