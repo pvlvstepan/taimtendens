@@ -47,6 +47,7 @@
 
   let processedData;
   let total = 0;
+  let totalClasses = 0;
 
   const processData = () => {
     attendance.map(record => {
@@ -57,10 +58,11 @@
       record.active = !!record.active;
 
       total += attendance;
+      totalClasses += record.total_classes;
     });
     processedData = attendance;
 
-    total = (total / attendance.length).toFixed(2);
+    total = (total / totalClasses).toFixed(2);
   };
 
   $: attendance, processData();

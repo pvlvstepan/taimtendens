@@ -3,7 +3,7 @@ import { initDB } from '@lib/mysql';
 export function post(req, res) {
   const { db } = initDB();
   db.query(
-    `SELECT intake_module.intake_id, intake_module.module_id, timetable_module.location, timetable_module.time_start, timetable_module.time_end FROM timetable_module INNER JOIN module ON module.module_id = timetable_module.module_id INNER JOIN timetable ON timetable.timetable_id = timetable_module.timetable_id INNER JOIN intake_module ON intake_module.module_id = timetable_module.module_id WHERE timetable_module.module_id = '${req.body.module_id}' AND intake_module.active = 1 AND timetable_module.date = '${req.body.date}'  AND intake_module.active = 1;`,
+    `SELECT DISTINCT im.intake_id, m.module_name, tm.location, tm.date, tm.time_start, tm.time_end FROM timetable_module tm INNER JOIN module m ON m.module_ID = tm.module_id INNER JOIN timetable t ON t.timetable_id = tm.timetable_id INNER JOIN intake_module im ON im.intake_id = t.intake_id WHERE tm.module_id = '${req.body.module_id}' AND im.active = 1 AND tm.date = '${req.body.date}'`,
     (err, results) => {
       if (err) throw err;
       res.writeHead(200, {

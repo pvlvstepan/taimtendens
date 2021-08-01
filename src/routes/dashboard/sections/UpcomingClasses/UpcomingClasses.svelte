@@ -41,8 +41,11 @@
             {#each timetableToday as today}
               <ListItem>
                 <svelte:fragment slot="left_element" />
-                <svelte:fragment slot="body_title"
-                  >{today.module_name || today.intake_id} ({today.module_id})</svelte:fragment
+                <svelte:fragment slot="body_title">
+                  {today.module_name} -
+                  <span class="primary-text"
+                    >{today.module_id || today.intake_id}</span
+                  ></svelte:fragment
                 >
                 <div class="green-text row_items" slot="body_content">
                   <Icon class="mdi mdi-clock-outline" size="16px" />
@@ -71,8 +74,11 @@
             {#each timetableTomorrow as tomorrow}
               <ListItem>
                 <svelte:fragment slot="left_element" />
-                <svelte:fragment slot="body_title"
-                  >{tomorrow.module_name || tomorrow.intake_id} ({tomorrow.module_id})</svelte:fragment
+                <svelte:fragment slot="body_title">
+                  {tomorrow.module_name} -
+                  <span class="primary-text"
+                    >{tomorrow.module_id || tomorrow.intake_id}</span
+                  ></svelte:fragment
                 >
                 <div class="green-text row_items" slot="body_content">
                   <Icon class="mdi mdi-clock-outline" size="16px" />
