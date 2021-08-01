@@ -86,10 +86,10 @@
     if (response.error !== undefined) {
       error = true;
       snackbar = true;
-      setTimeout(() => (active = false), 2000);
+      setTimeout(() => (active = false), 1000);
     } else {
       snackbar = true;
-      setTimeout(() => location.replace('/modules'), 2000);
+      setTimeout(() => location.replace('/modules'), 1000);
     }
   };
 </script>
@@ -142,7 +142,7 @@
   bind:active={snackbar}
   bottom
   center
-  timeout={2000}
+  timeout={1000}
 >
   {error === false ? 'Changes Saved Successfuly' : 'Something went wrong...'}
 </Snackbar>

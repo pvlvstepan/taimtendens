@@ -105,10 +105,10 @@
     if (response.error !== undefined) {
       error = true;
       snackbar = true;
-      setTimeout(() => (active = false), 2000);
+      setTimeout(() => (active = false), 1000);
     } else {
       snackbar = true;
-      setTimeout(() => location.replace('/intakes'), 2000);
+      setTimeout(() => location.replace('/intakes'), 1000);
     }
   };
 </script>
@@ -163,7 +163,7 @@
   bind:active={snackbar}
   bottom
   center
-  timeout={2000}
+  timeout={1000}
 >
   {error === false ? 'Intake Added Successfuly' : 'Something went wrong...'}
 </Snackbar>

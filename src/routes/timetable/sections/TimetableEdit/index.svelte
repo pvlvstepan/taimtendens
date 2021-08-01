@@ -9,7 +9,7 @@
   } from 'svelte-materialify/src';
   import Datepicker from 'svelte-calendar';
   import Card from '../../../../components/Card/Card.svelte';
-  import {getMonday} from '../../../../utils/getFirstDay';
+  import { getMonday } from '../../../../utils/getFirstDay';
   import dayjs from 'dayjs';
   import tConvert from '../../../../utils/convertTime';
   import ConfrimModal from '../../../../components/ConfirmModal/index.svelte';
@@ -47,10 +47,10 @@
     if (response.error !== undefined) {
       error = true;
       snackbar = true;
-      setTimeout(() => (active = false), 2000);
+      setTimeout(() => (active = false), 1000);
     } else {
       snackbar = true;
-      setTimeout(() => location.replace('/timetable'), 2000);
+      setTimeout(() => location.replace('/timetable'), 1000);
     }
   };
 
@@ -171,10 +171,10 @@
     if (response.error !== undefined) {
       error = true;
       snackbar2 = true;
-      setTimeout(() => (active = false), 2000);
+      setTimeout(() => (active = false), 1000);
     } else {
       snackbar2 = true;
-      setTimeout(() => location.replace('/timetable'), 2000);
+      setTimeout(() => location.replace('/timetable'), 1000);
     }
   };
 </script>
@@ -283,7 +283,7 @@
   bind:active={snackbar}
   bottom
   center
-  timeout={2000}
+  timeout={1000}
 >
   {error === false ? 'Changes Saved Successfuly' : 'Something went wrong...'}
 </Snackbar>
@@ -293,7 +293,7 @@
   bind:active={snackbar2}
   bottom
   center
-  timeout={2000}
+  timeout={1000}
 >
   {error === false ? 'Class Deleted from timetable' : 'Something went wrong...'}
 </Snackbar>

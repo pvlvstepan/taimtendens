@@ -95,7 +95,7 @@
     } else {
       active = false;
       snackbar = true;
-      setTimeout(() => location.replace('/settings'), 2000);
+      setTimeout(() => location.replace('/settings'), 1000);
     }
   };
 
@@ -191,7 +191,7 @@
   bind:active={snackbar}
   bottom
   center
-  timeout={2000}
+  timeout={1000}
 >
   Email changed successfuly
 </Snackbar>

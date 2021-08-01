@@ -54,7 +54,7 @@
     if (response.error !== undefined) {
       error = true;
       snackbar = true;
-      setTimeout(() => location.replace('/intakes'), 2000);
+      setTimeout(() => location.replace('/intakes'), 1000);
     } else {
       snackbar = true;
     }
@@ -149,7 +149,7 @@
   bind:active={snackbar}
   bottom
   center
-  timeout={2000}
+  timeout={1000}
 >
   {error === false ? 'Changes Saved Successfuly' : 'Something went wrong...'}
 </Snackbar>
