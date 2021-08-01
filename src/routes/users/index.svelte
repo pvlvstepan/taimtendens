@@ -73,9 +73,7 @@
   let editingUser;
 </script>
 
-<svelte:head>
-  <title>TaimTendens | Users</title>
-</svelte:head>
+<svelte:head><title>TaimTendens | Users</title></svelte:head>
 
 <CardWrapper>
   <UserView {users} bind:userAddIsOpen bind:userEditIsOpen bind:editingUser />

@@ -57,8 +57,6 @@
     editingIntake;
 </script>
 
-<svelte:head>TaimTendens | Intakes</svelte:head>
-
 <CardWrapper>
   <IntakeView
     {intakes}
@@ -79,3 +77,5 @@
     />
   {/if}
 </CardWrapper>
+
+<svelte:head><title>TaimTendens | Intakes</title></svelte:head>

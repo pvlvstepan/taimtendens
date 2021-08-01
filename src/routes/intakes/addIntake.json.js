@@ -10,21 +10,19 @@ export function post(req, res) {
         res.end(JSON.stringify({ error: 'Something went wrong...' }));
         db.end();
       } else {
-        req.body.modules.map(val => {
+        req.body.modules.map((val, index) => {
           db.query(
             `INSERT INTO intake_module (intake_id, module_id, active) VALUES ('${req.body.intake_id}', '${val}', 1)`,
             err => {
               if (err) {
                 console.log('[mysql]:', err.message);
                 res.end(JSON.stringify({ error: 'Something went wrong...' }));
-                db.end();
               } else {
                 res.end(JSON.stringify({ message: 'OK' }));
-                db.end();
               }
-
             }
           );
+          if (index === (req.body.modules.length - 1)) db.end();
         });
       }
     }

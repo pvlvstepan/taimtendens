@@ -22,7 +22,7 @@
   });
 </script>
 
-<svelte:head>TaimTendens | Logout</svelte:head>
+<svelte:head><title>TaimTendens | Logout</title></svelte:head>
 
 <div class="d-flex justify-center align-center p-4" style="height:100vh;">
   <Card raised style="max-width:400px; width: 100%; border-radius">
