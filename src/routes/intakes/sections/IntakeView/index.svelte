@@ -2,6 +2,8 @@
   import {
     Button,
     Checkbox,
+    ExpansionPanel,
+    ExpansionPanels,
     Icon,
     Snackbar,
     TextField
@@ -100,26 +102,31 @@
                 >{item.total_students} students total</span
               >
             </div>
-            <div class="col-items" slot="body_alt">
-              {#each intake_modules as im}
-                {#if im.intake_id === item.intake_id}
-                  <div class="row_items">
-                    <Checkbox
-                      checked={im.active === 1}
-                      on:change={e =>
-                        changeActive(
-                          e.target.checked,
-                          im.module_id,
-                          im.intake_id
-                        )}
-                    />
-                    <div class="col_items">
-                      <span>{im.module_name} ({im.module_id})</span>
-                    </div>
-                  </div>
-                {/if}
-              {/each}
-            </div>
+            <ExpansionPanels slot="body_alt">
+              <ExpansionPanel>
+                <span slot="header">Modules</span>
+                <div class="col-items">
+                  {#each intake_modules as im}
+                    {#if im.intake_id === item.intake_id}
+                      <div class="row_items">
+                        <Checkbox
+                          checked={im.active === 1}
+                          on:change={e =>
+                            changeActive(
+                              e.target.checked,
+                              im.module_id,
+                              im.intake_id
+                            )}
+                        />
+                        <div class="col_items">
+                          <span>{im.module_name} ({im.module_id})</span>
+                        </div>
+                      </div>
+                    {/if}
+                  {/each}
+                </div>
+              </ExpansionPanel>
+            </ExpansionPanels>
             <svelte:fragment slot="right_element">
               <Button
                 text
