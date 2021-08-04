@@ -10,7 +10,7 @@ const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 const FileStore = new sessionFileStore(session);
 
-export default express()
+express()
   .use(
     json(),
     session({
