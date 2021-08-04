@@ -5,7 +5,7 @@
     ExpansionPanels
   } from 'svelte-materialify/src';
   import Card from '../../../../components/Card/Card.svelte';
-  import ListItem from '../../../../Components/ListItem/ListItem.svelte';
+  import ListItem from '../../../../components/ListItem/ListItem.svelte';
 
   export let user;
   export let activeModules;

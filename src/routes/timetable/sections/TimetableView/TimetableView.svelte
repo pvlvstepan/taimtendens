@@ -1,7 +1,7 @@
 <script>
-  import Card from '../../../../Components/Card/Card.svelte';
-  import Tabs from '../../../../Components/Tabs/Tabs.svelte';
-  import ListItem from '../../../../Components/ListItem/ListItem.svelte';
+  import Card from '../../../../components/Card/Card.svelte';
+  import Tabs from '../../../../components/Tabs/Tabs.svelte';
+  import ListItem from '../../../../components/ListItem/ListItem.svelte';
   import {
     Window,
     WindowItem,
@@ -13,15 +13,15 @@
     Select
   } from 'svelte-materialify/src';
   import tConvert from '../../../../utils/convertTime';
-  import {afterUpdate, onMount} from 'svelte';
-  import {getMonday} from '../../../../utils/getFirstDay';
+  import { afterUpdate, onMount } from 'svelte';
+  import { getMonday } from '../../../../utils/getFirstDay';
 
   const tabs = [
-    {id: 0, label: 'Monday'},
-    {id: 1, label: 'Tuesday'},
-    {id: 2, label: 'Wednesday'},
-    {id: 3, label: 'Thursday'},
-    {id: 4, label: 'Friday'}
+    { id: 0, label: 'Monday' },
+    { id: 1, label: 'Tuesday' },
+    { id: 2, label: 'Wednesday' },
+    { id: 3, label: 'Thursday' },
+    { id: 4, label: 'Friday' }
   ];
 
   let currentTab = 0;
