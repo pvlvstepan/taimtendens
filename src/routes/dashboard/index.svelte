@@ -106,6 +106,6 @@
   <ProfilePreview {user} />
   {#if user.role_id !== 2}
     <UpcomingClasses {timetableToday} {timetableTomorrow} />
-    <AttendanceSummary {attendance} />
+    <AttendanceSummary {attendance} {user} />
   {/if}
 </CardWrapper>

@@ -5,11 +5,13 @@
 
   export let current;
   export let attendance;
+  export let user;
 </script>
 
 <Card>
   <svelte:fragment slot="card_title"
-    >{current === true ? 'Current' : 'Past'} modules</svelte:fragment
+    >{current === true ? 'Current' : 'Past'}
+    {user.role_id === 1 ? 'intakes' : 'modules'}</svelte:fragment
   >
   <svelte:fragment slot="card_body">
     <div class="col_items">
@@ -18,7 +20,9 @@
           {#if record.active === current}
             <ListItem>
               <svelte:fragment slot="body_title"
-                >{record.module_name} ({record.module_id})</svelte:fragment
+                >{user.role_id === 1
+                  ? record.intake_id
+                  : `${record.module_name} (${record.module_id})`}</svelte:fragment
               >
               <div class="space-between" slot="body_alt">
                 <div
@@ -27,17 +31,23 @@
                   }`}
                 >
                   <Icon class="mdi mdi-chart-donut" size="16px" />
-                  {record.attended}/{record.total_classes} Classes ({record.attendance.toFixed(
-                    2
-                  )}%)
+                  {#if user.role_id === 0}
+                    {record.attended}/{record.total_classes} Classes ({record.attendance.toFixed(
+                      2
+                    )}%)
+                  {:else}
+                    {record.attendance.toFixed(2)}%
+                  {/if}
                 </div>
-                <span
-                  >Exam Eligibility: <span
-                    class={`data-element ${
-                      record.attendance > 80 ? 'green-text' : 'red-text'
-                    }`}>{record.attendance > 80 ? 'OK' : 'BA'}</span
-                  ></span
-                >
+                {#if user.role_id === 0}
+                  <span
+                    >Exam Eligibility: <span
+                      class={`data-element ${
+                        record.attendance > 80 ? 'green-text' : 'red-text'
+                      }`}>{record.attendance > 80 ? 'OK' : 'BA'}</span
+                    ></span
+                  >
+                {/if}
               </div>
             </ListItem>
           {/if}

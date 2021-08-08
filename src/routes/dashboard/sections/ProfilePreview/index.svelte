@@ -61,7 +61,9 @@
     <Button
       class="primary-color"
       style="flex: 1"
-      on:click={() => signAttendanceIsOpen.set(true)}
+      on:click={user.role_id !== 0
+        ? () => goto('attendance')
+        : () => signAttendanceIsOpen.set(true)}
     >
       Sign Attendance
       <Icon class="mdi mdi-checkbox-multiple-marked-circle ml-1" />
