@@ -1,9 +1,5 @@
 <script context="module">
   export async function preload(page, session) {
-    if (!session.isLoggedIn) {
-      return this.redirect(302, 'login');
-    }
-
     const { token } = session;
 
     return {

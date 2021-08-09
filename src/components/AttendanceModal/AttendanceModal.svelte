@@ -55,31 +55,33 @@
   let message = '';
 
   const markAttendance = async (user_tp, timeslot_id) => {
-    if (isMounted) {
-      const results = await fetch(`attendance/markAttendance.json`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          timeslot_id: timeslot_id,
-          user_tp: user_tp,
-          present: true
-        })
-      });
+    console.log(user_tp, timeslot_id);
+    const results = await fetch(`attendance/markAttendance.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        timeslot_id: timeslot_id,
+        user_tp: user_tp,
+        present: true
+      })
+    });
 
-      const response = await results.json();
+    const response = await results.json();
 
-      if (response.error !== undefined) {
-        snackbar = true;
-        message = 'Something went wrong...';
-        setTimeout(() => (active = false), 3000);
-      } else {
-        snackbar = true;
-        message = 'Attendance Signed Successfuly';
-        setTimeout(() => (active = false), 3000);
-      }
+    if (response.error !== undefined) {
+      snackbar = true;
+      message = 'Something went wrong...';
+      setTimeout(() => (active = false), 3000);
+    } else {
+      snackbar = true;
+      message = 'Attendance Signed Successfuly';
+      setTimeout(() => {
+        active = false;
+        location.replace('/');
+      }, 3000);
     }
   };
 
@@ -184,7 +186,7 @@
   bind:active={snackbar}
   bottom
   center
-  timeout={1000}
+  timeout={3000}
 >
   {message}
 </Snackbar>
