@@ -40,7 +40,6 @@
     if (user.role_id === 0) {
       total = (total / totalClasses).toFixed(2);
     } else {
-      console.log(total, totalClasses, totalStudents);
       total = (total / (totalClasses * totalStudents)).toFixed(2);
     }
   };

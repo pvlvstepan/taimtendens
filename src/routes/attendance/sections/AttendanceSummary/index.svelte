@@ -4,7 +4,7 @@
   import { Button, Icon, Select } from 'svelte-materialify/src';
   import AttendanceChart from '../../../../components/AttendanceChart/AttendanceChart.svelte';
 
-  export let attendance;
+  export let total, SignAttendanceIsOpen;
   export let user, intakes, currentIntake;
 </script>
 
@@ -25,11 +25,11 @@
       Overall {user.role_id === 1 ? 'Module' : 'Intake'} Attendance
     </h6>
     <div class="chart-wrapper">
-      <AttendanceChart {attendance} id={1} />
+      <AttendanceChart attendance={total} id={1} />
     </div>
     {#if user.role_id === 0}
       <h6 class="text-body-1 text-center text--secondary">
-        {#if attendance >= 80}
+        {#if total >= 80}
           Your attendance is looking good! Keep up the good work.
         {:else}
           Your attendance is lower than 80%. Consider submitting EC to admin.
@@ -40,7 +40,9 @@
   <div class="button_wrapper" slot="card_footer">
     <Button
       class="primary-color"
-      on:click={() => signAttendanceIsOpen.set(true)}
+      on:click={user.role_id === 0
+        ? () => signAttendanceIsOpen.set(true)
+        : () => (SignAttendanceIsOpen = true)}
     >
       Sign Attendance
       <Icon class="mdi mdi-checkbox-multiple-marked-circle ml-1" />

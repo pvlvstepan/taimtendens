@@ -1,4 +1,8 @@
-<div class="list-item">
+<script>
+  export let className = '';
+</script>
+
+<div class={`list-item ${className}`}>
   {#if $$slots.left_element}
     <div class="item-left-el">
       <slot name="left_element" />

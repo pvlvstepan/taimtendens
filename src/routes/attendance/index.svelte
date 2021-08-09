@@ -39,18 +39,23 @@
   import AttendanceSummary from './sections/AttendanceSummary/index.svelte';
   import AttendanceLegends from './sections/AttendanceLegends/index.svelte';
   import AttendanceView from './sections/AttendanceView/index.svelte';
+  import SignAttendance from './sections/SignAttendance/index.svelte';
+  import SelectStudents from './sections/SelectStudents/index.svelte';
   import { onMount } from 'svelte';
 
-  let attendance = [];
   export let user;
   export let intakes = [];
 
+  let attendance = [];
   let currentIntake = user.role_id === 0 ? user.intake_id : intakes[0].value;
-
   let processedData;
   let total = 0;
-
   let isMounded = false;
+  let timetable;
+  let SignAttendanceIsOpen = false;
+  let selectedTimeslot;
+  let SelectStudentsIsOpen = false;
+  let withNumber = false;
 
   const loadAttendance = async () => {
     if (isMounded) {
@@ -105,20 +110,72 @@
   };
 
   $: attendance, processData();
-  $: currentIntake, isMounded, loadAttendance();
+  $: currentIntake,
+    isMounded,
+    SignAttendanceIsOpen,
+    SelectStudentsIsOpen,
+    loadAttendance();
+  $: currentIntake, isMounded, loadTimetable();
 
   onMount(() => {
     loadAttendance();
+    loadTimetable();
     isMounded = true;
   });
+
+  const loadTimetable = async () => {
+    if (isMounded) {
+      const results = await fetch(
+        `timetable/timetable${user.role_id === 1 ? '_lecturer' : ''}.json`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            intake: user.role_id === 2 ? currentIntake : user.intake_id,
+            nextWeek: false,
+            module_id: user.module_id
+          })
+        }
+      );
+      timetable = await results.json();
+    }
+  };
 </script>
 
 <CardWrapper>
-  <AttendanceSummary attendance={total} {user} {intakes} bind:currentIntake />
+  <AttendanceSummary
+    {total}
+    {user}
+    {intakes}
+    bind:currentIntake
+    bind:SignAttendanceIsOpen
+  />
   <AttendanceView {user} current={true} attendance={processedData} />
   <AttendanceView {user} current={false} attendance={processedData} />
   {#if user.role_id === 0}
     <AttendanceLegends />
+  {/if}
+  {#if SignAttendanceIsOpen && user.role_id !== 0}
+    <SignAttendance
+      bind:withNumber
+      bind:currentIntake
+      {user}
+      {intakes}
+      bind:active={SignAttendanceIsOpen}
+      {timetable}
+      bind:selectedTimeslot
+      bind:SelectStudentsIsOpen
+    />
+  {/if}
+  {#if SelectStudentsIsOpen && user.role_id !== 0}
+    <SelectStudents
+      {selectedTimeslot}
+      {withNumber}
+      bind:active={SelectStudentsIsOpen}
+    />
   {/if}
 </CardWrapper>
 

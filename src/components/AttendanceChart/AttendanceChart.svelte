@@ -5,9 +5,11 @@
   export let attendance;
   export let id;
 
+  let chart;
+
   const renderChart = () => {
     var ctx = document.getElementById(`pie-chart-${id}`);
-    void new Chart(ctx, {
+    chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ['present', 'absent'],
@@ -23,7 +25,18 @@
     });
   };
 
-  onMount(renderChart);
+  onMount(() => {
+    renderChart();
+  });
+
+  const updateChart = () => {
+    if (chart) {
+      chart.data.datasets[0].data = [attendance, 100 - attendance];
+      chart.update();
+    }
+  };
+
+  $: attendance, updateChart();
 </script>
 
 <div class="chart_wrapper">
