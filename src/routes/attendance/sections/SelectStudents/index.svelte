@@ -268,7 +268,7 @@
         <div class="col_items ma-6" style="width: 50%">
           <AttendanceChart
             attendance={present !== 0
-              ? ((total / present) * 100).toFixed(2)
+              ? ((present / total) * 100).toFixed(2)
               : 0.0}
             id={3}
           />
