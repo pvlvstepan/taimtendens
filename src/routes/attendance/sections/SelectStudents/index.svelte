@@ -47,7 +47,7 @@
   const generateOTP = () => {
     const digits = '123456789';
     for (let i = 0; i < 3; i++) {
-      OTP += digits[Math.floor(Math.random() * 10)];
+      OTP += digits[Math.floor(Math.random() * 9)];
     }
   };
 
