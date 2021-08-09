@@ -19,7 +19,7 @@ export function post(req, res) {
     );
   } else {
     db.query(
-      `UPDATE timetable_module SET slot_is_open = 0, OTP = '' WHERE timeslot_id = ${req.body.timeslot_id}`,
+      `UPDATE timetable_module SET slot_is_open = 0, OTP = NULL WHERE timeslot_id = ${req.body.timeslot_id}`,
       (err) => {
         if (err) {
           console.log('[mysql]:', err.message);

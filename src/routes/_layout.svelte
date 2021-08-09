@@ -1,3 +1,17 @@
+<script context="module">
+  export async function preload(page, session) {
+    if (!session.isLoggedIn) {
+      return this.redirect(302, 'login');
+    }
+
+    const { token } = session;
+
+    return {
+      token: token
+    };
+  }
+</script>
+
 <script>
   import { MaterialApp } from 'svelte-materialify/src';
   import TopNavBar from '../components/TopNavBar/index.svelte';
@@ -5,6 +19,7 @@
   import AttendanceModal from '../components/AttendanceModal/AttendanceModal.svelte';
 
   export let segment;
+  export let token;
 </script>
 
 <MaterialApp>
@@ -15,7 +30,7 @@
     <slot />
   </main>
   {#if segment !== 'login' && segment !== 'logout'}
-    <AttendanceModal />
+    <AttendanceModal user_tp={token} />
   {/if}
 </MaterialApp>
 

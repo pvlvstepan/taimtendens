@@ -1,7 +1,9 @@
 <script>
-  import { Button, Dialog, Icon } from 'svelte-materialify/src';
+  import { Button, Dialog, Icon, Snackbar } from 'svelte-materialify/src';
   import { signAttendanceIsOpen } from '../../stores.js';
   import Card from '../../components/Card/Card.svelte';
+
+  export let user_tp;
 
   let active,
     isValid = false,
@@ -13,7 +15,11 @@
     isValid = false;
   });
 
+  let OTP = '';
+
   const handleKeyPress = e => {
+    OTP = '';
+
     const id = parseInt(e.target.id);
     const prev = id - 1;
     const next = id + 1;
@@ -39,6 +45,70 @@
 
     isValid = !values.includes(null) && values.length === 3;
     e.preventDefault();
+
+    values.map(val => {
+      OTP += val;
+    });
+  };
+
+  let snackbar = false;
+  let message = '';
+
+  const markAttendance = async (user_tp, timeslot_id) => {
+    if (isMounted) {
+      const results = await fetch(`attendance/markAttendance.json`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          timeslot_id: timeslot_id,
+          user_tp: user_tp,
+          present: true
+        })
+      });
+
+      const response = await results.json();
+
+      if (response.error !== undefined) {
+        snackbar = true;
+        message = 'Something went wrong...';
+        setTimeout(() => (active = false), 3000);
+      } else {
+        snackbar = true;
+        message = 'Attendance Signed Successfuly';
+        setTimeout(() => (active = false), 3000);
+      }
+    }
+  };
+
+  const signAttendance = async () => {
+    const result = await fetch('attendance/findClass.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        OTP: OTP,
+        user_tp: user_tp
+      })
+    });
+
+    const res = await result.json();
+
+    if (res.error !== undefined) {
+      snackbar = true;
+      message = 'Something went wrong...';
+      setTimeout(() => (active = false), 3000);
+    } else if (res.length !== 1) {
+      snackbar = true;
+      message = 'Classroom not found';
+      setTimeout(() => (active = false), 3000);
+    } else {
+      markAttendance(user_tp, res[0].timeslot_id);
+    }
   };
 </script>
 
@@ -98,7 +168,7 @@
           Cancel
         </Button>
         {#if isValid}
-          <Button on:click={() => alert('okay')} class="primary-color">
+          <Button on:click={() => signAttendance()} class="primary-color">
             Sign Attendance
           </Button>
         {:else}
@@ -108,6 +178,16 @@
     </Card>
   </div>
 </Dialog>
+
+<Snackbar
+  class="flex-column"
+  bind:active={snackbar}
+  bottom
+  center
+  timeout={1000}
+>
+  {message}
+</Snackbar>
 
 <style>
   .card_body {
